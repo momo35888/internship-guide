@@ -3685,6 +3685,68 @@ body.admin-on .add-category-card { display: flex; }
                 <div class="message-card">
                     <div class="message-card-header">
                         <div class="message-author">
+                            <div class="message-avatar">猪</div>
+                            <span class="message-nickname">猪要有个猪样</span>
+                        </div>
+                        <span class="message-date">2026-10-19</span>
+                    </div>
+                    <div class="message-content">测试4<div class="uploaded-images"><img class="uploaded-img" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCADeAS8DASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AK8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/2Q==" alt="分享图片" loading="lazy" onerror="this.style.display='none'"></div></div>
+                    
+                    <div class="message-actions">
+                        <button class="reply-btn" onclick="showReplyForm(111)">
+                            <span>💬</span> 回复
+                        </button>
+                        
+                    </div>
+                    <div class="reply-form" id="reply-form-111">
+                        <input type="text" id="reply-nick-111" placeholder="昵称（选填，默认匿名）" maxlength="20">
+                        <textarea id="reply-text-111" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
+                        <input type="file" id="reply-image-input-111" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-111')">
+                        <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-111').click()">
+                            <span>🖼️</span> 添加图片
+                        </button>
+                        <div class="img-preview-grid" id="reply-image-preview-111"></div>
+                        <div class="reply-form-actions">
+                            <button class="btn-cancel-reply" onclick="hideReplyForm(111)">取消</button>
+                            <button class="btn-submit-reply" onclick="submitReply(111)">提交回复</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="message-card">
+                    <div class="message-card-header">
+                        <div class="message-author">
+                            <div class="message-avatar">猪</div>
+                            <span class="message-nickname">猪要有个猪样</span>
+                        </div>
+                        <span class="message-date">2026-10-19</span>
+                    </div>
+                    <div class="message-content">测试3</div>
+                    
+                    <div class="message-actions">
+                        <button class="reply-btn" onclick="showReplyForm(110)">
+                            <span>💬</span> 回复
+                        </button>
+                        
+                    </div>
+                    <div class="reply-form" id="reply-form-110">
+                        <input type="text" id="reply-nick-110" placeholder="昵称（选填，默认匿名）" maxlength="20">
+                        <textarea id="reply-text-110" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
+                        <input type="file" id="reply-image-input-110" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-110')">
+                        <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-110').click()">
+                            <span>🖼️</span> 添加图片
+                        </button>
+                        <div class="img-preview-grid" id="reply-image-preview-110"></div>
+                        <div class="reply-form-actions">
+                            <button class="btn-cancel-reply" onclick="hideReplyForm(110)">取消</button>
+                            <button class="btn-submit-reply" onclick="submitReply(110)">提交回复</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="message-card">
+                    <div class="message-card-header">
+                        <div class="message-author">
                             <div class="message-avatar">匿</div>
                             <span class="message-nickname">匿名用户</span>
                         </div>
@@ -3830,6 +3892,37 @@ body.admin-on .add-category-card { display: flex; }
                         <div class="reply-form-actions">
                             <button class="btn-cancel-reply" onclick="hideReplyForm(108)">取消</button>
                             <button class="btn-submit-reply" onclick="submitReply(108)">提交回复</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="message-card">
+                    <div class="message-card-header">
+                        <div class="message-author">
+                            <div class="message-avatar">猪</div>
+                            <span class="message-nickname">猪要有个猪样</span>
+                        </div>
+                        <span class="message-date">2026-10-19</span>
+                    </div>
+                    <div class="message-content">测试2</div>
+                    
+                    <div class="message-actions">
+                        <button class="reply-btn" onclick="showReplyForm(109)">
+                            <span>💬</span> 回复
+                        </button>
+                        
+                    </div>
+                    <div class="reply-form" id="reply-form-109">
+                        <input type="text" id="reply-nick-109" placeholder="昵称（选填，默认匿名）" maxlength="20">
+                        <textarea id="reply-text-109" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
+                        <input type="file" id="reply-image-input-109" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-109')">
+                        <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-109').click()">
+                            <span>🖼️</span> 添加图片
+                        </button>
+                        <div class="img-preview-grid" id="reply-image-preview-109"></div>
+                        <div class="reply-form-actions">
+                            <button class="btn-cancel-reply" onclick="hideReplyForm(109)">取消</button>
+                            <button class="btn-submit-reply" onclick="submitReply(109)">提交回复</button>
                         </div>
                     </div>
                 </div>
@@ -4718,6 +4811,7 @@ body.admin-on .add-category-card { display: flex; }
                 if ('reply' in m && !m.reply) delete m.reply;
                 m.replies.forEach(r => {
                     if (!r.images) r.images = [];
+                    if (!r.timestamp) r.timestamp = new Date(r.date).getTime();
                     if (typeof r.id === 'number' && r.id > replyIdCounter) replyIdCounter = r.id;
                 });
                 if (typeof m.id === 'number' && m.id > maxMessageId) maxMessageId = m.id;
@@ -5518,7 +5612,11 @@ body.admin-on .add-category-card { display: flex; }
                 const replyKey = 'reply-' + msg.id;
                 const repliesHtml = (msg.replies && msg.replies.length) ? `
                     <div class="message-replies">
-                        ${msg.replies.map(r => `
+                        ${[...msg.replies].sort((a, b) => {
+                            const ta = a.timestamp || new Date(a.date).getTime();
+                            const tb = b.timestamp || new Date(b.date).getTime();
+                            return tb - ta;
+                        }).map(r => `
                             <div class="message-reply-item">
                                 <div class="message-reply-head">
                                     <span class="reply-name">${escapeHtml(r.nickname)}</span>
@@ -5745,6 +5843,7 @@ body.admin-on .add-category-card { display: flex; }
                 isAdmin: !!isAdminMode,
                 content: replyContent,
                 date: new Date().toISOString().split('T')[0],
+                timestamp: Date.now(),
                 images: getImageStore(replyKey).slice()
             };
             message.replies.push(reply);
