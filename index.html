@@ -3806,6 +3806,37 @@ body.admin-on .add-category-card { display: flex; }
                 <div class="message-card">
                     <div class="message-card-header">
                         <div class="message-author">
+                            <div class="message-avatar">猪</div>
+                            <span class="message-nickname">猪要有个猪样</span>
+                        </div>
+                        <span class="message-date">2026-10-19</span>
+                    </div>
+                    <div class="message-content">测试1</div>
+                    
+                    <div class="message-actions">
+                        <button class="reply-btn" onclick="showReplyForm(108)">
+                            <span>💬</span> 回复
+                        </button>
+                        
+                    </div>
+                    <div class="reply-form" id="reply-form-108">
+                        <input type="text" id="reply-nick-108" placeholder="昵称（选填，默认匿名）" maxlength="20">
+                        <textarea id="reply-text-108" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
+                        <input type="file" id="reply-image-input-108" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-108')">
+                        <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-108').click()">
+                            <span>🖼️</span> 添加图片
+                        </button>
+                        <div class="img-preview-grid" id="reply-image-preview-108"></div>
+                        <div class="reply-form-actions">
+                            <button class="btn-cancel-reply" onclick="hideReplyForm(108)">取消</button>
+                            <button class="btn-submit-reply" onclick="submitReply(108)">提交回复</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="message-card">
+                    <div class="message-card-header">
+                        <div class="message-author">
                             <div class="message-avatar">匿</div>
                             <span class="message-nickname">匿名用户</span>
                         </div>
@@ -4658,6 +4689,7 @@ body.admin-on .add-category-card { display: flex; }
                 if (!Array.isArray(arr)) return;
                 arr.forEach(s => {
                     if (!s.images) s.images = [];
+                    if (!s.timestamp) s.timestamp = new Date(s.date).getTime();
                     if (typeof s.id === 'number' && s.id > maxShareId) maxShareId = s.id;
                 });
             });
@@ -4668,6 +4700,7 @@ body.admin-on .add-category-card { display: flex; }
             replyIdCounter = 0;
             messages.forEach(m => {
                 if (!m.images) m.images = [];
+                if (!m.timestamp) m.timestamp = new Date(m.date).getTime();
                 // 旧数据迁移：reply 对象 → replies 数组
                 if (m.reply && !m.replies) {
                     m.replies = [{
@@ -5124,8 +5157,12 @@ body.admin-on .add-category-card { display: flex; }
                 return;
             }
             
-            // 按发布时间倒序（最新在前），同日期按点赞数倒序
-            companyShares.sort((a, b) => new Date(b.date) - new Date(a.date) || b.likes - a.likes);
+            // 按发布时间倒序（最新在前），优先用毫秒级 timestamp，兜底用 date
+            companyShares.sort((a, b) => {
+                const ta = a.timestamp || new Date(a.date).getTime();
+                const tb = b.timestamp || new Date(b.date).getTime();
+                return tb - ta;
+            });
             
             if (currentModule === 'interview') {
                 // 面试经验卡片 - 特殊样式
@@ -5341,6 +5378,7 @@ body.admin-on .add-category-card { display: flex; }
                 nickname,
                 content,
                 date: new Date().toISOString().split('T')[0],
+                timestamp: Date.now(),
                 likes: 0,
                 position,
                 period,
@@ -5469,9 +5507,11 @@ body.admin-on .add-category-card { display: flex; }
         // ========== 留言板功能 ==========
         function renderMessages() {
             const list = document.getElementById('message-list');
-            // 按时间倒序排列
+            // 按发布时间倒序（最新在前），优先用毫秒级 timestamp，兜底用 date
             const sortedMessages = [...messages].sort((a, b) => {
-                return new Date(b.date) - new Date(a.date);
+                const ta = a.timestamp || new Date(a.date).getTime();
+                const tb = b.timestamp || new Date(b.date).getTime();
+                return tb - ta;
             });
             
             list.innerHTML = sortedMessages.map(msg => {
@@ -5554,6 +5594,7 @@ body.admin-on .add-category-card { display: flex; }
                 nickname: nickname,
                 content: content,
                 date: new Date().toISOString().split('T')[0],
+                timestamp: Date.now(),
                 images: messageImages.slice(),
                 replies: []
             };
