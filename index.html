@@ -1694,6 +1694,251 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ========== 图片上传与展示 ========== */
+        .img-upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: 1px dashed var(--border, #d1d5db);
+            border-radius: 10px;
+            background: #f9fafb;
+            color: var(--text-light, #6b7280);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .img-upload-btn:hover {
+            border-color: var(--primary, #4f6ef7);
+            color: var(--primary, #4f6ef7);
+            background: #f5f7ff;
+        }
+        .img-upload-tip {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-left: 10px;
+        }
+        .img-preview-grid,
+        .uploaded-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .img-preview-item {
+            position: relative;
+            width: 78px;
+            height: 78px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        .img-preview-item img,
+        .uploaded-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: zoom-in;
+            display: block;
+        }
+        .img-remove {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 20px;
+            height: 20px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0,0,0,.55);
+            color: #fff;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-remove:hover { background: #dc2626; }
+        .uploaded-images { margin-top: 12px; }
+        .uploaded-images img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            transition: transform .15s;
+        }
+        .uploaded-images img:hover { transform: scale(1.03); }
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.82);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay img {
+            max-width: 92vw;
+            max-height: 88vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.5);
+        }
+
+        /* ========== 留言楼中楼回复 ========== */
+        .message-replies {
+            margin-top: 12px;
+            background: #f7f8fa;
+            border-radius: 12px;
+            padding: 10px 14px;
+        }
+        .message-reply-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+        .message-reply-item:last-child { border-bottom: none; }
+        .message-reply-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+        .message-reply-head .reply-name { font-weight: 600; color: #374151; }
+        .message-reply-head .reply-date { color: #9ca3af; font-size: 12px; margin-left: auto; }
+        .admin-badge {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: #fff;
+            font-size: 11px;
+            padding: 1px 8px;
+            border-radius: 20px;
+        }
+        .reply-delete-btn {
+            border: none;
+            background: none;
+            color: #ef4444;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .message-reply-text {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+        .message-reply-text .uploaded-images img { width: 84px; height: 84px; }
+        .message-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .reply-form input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border, #d1d5db);
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-family: inherit;
+        }
+        .reply-form textarea {
+            width: 100%;
+            min-height: 72px;
+            padding: 10px 12px;
+            border: 1px solid var(--border, #d1d5db);
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        /* ========== 管理员：删除/管理按钮 ========== */
+        .company-card { position: relative; }
+        .card-delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 26px;
+            height: 26px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(220,38,38,.1);
+            color: #dc2626;
+            font-size: 14px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .card-delete-btn:hover { background: #dc2626; color: #fff; }
+        body.admin-on .card-delete-btn { display: flex; }
+        .category-card { position: relative; }
+        .category-card .card-delete-btn {
+            background: rgba(220,38,38,.85);
+            color: #fff;
+        }
+        .category-card .card-delete-btn:hover { background: #b91c1c; }
+        .add-category-card {
+            border: 2px dashed #c7d2fe;
+            border-radius: 16px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 170px;
+            cursor: pointer;
+            color: var(--primary, #4f6ef7);
+            background: #f8faff;
+            transition: all .2s;
+        }
+        .add-category-card:hover { background: #eef2ff; border-color: var(--primary, #4f6ef7); }
+        .add-category-card .plus { font-size: 36px; }
+        body.admin-on .add-category-card { display: flex; }
+        .admin-danger-btn {
+            background: #fff1f2 !important;
+            color: #dc2626 !important;
+            border: 1px solid #fecdd3 !important;
+        }
+        .admin-danger-btn:hover { background: #dc2626 !important; color: #fff !important; }
+
+        /* 通用小弹窗表单 */
+        .category-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .category-modal {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.2);
+        }
+        .category-modal h3 { margin: 0 0 16px; font-size: 18px; }
+        .category-modal .form-group { margin-bottom: 14px; }
+        .category-modal label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #374151; }
+        .category-modal input, .category-modal textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .category-modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
     </style>
 </head>
 <body>
@@ -1815,6 +2060,7 @@
             <div class="container">
                 <div class="detail-actions">
                     <h2 style="font-size: 20px; font-weight: 600;">实习经验分享</h2>
+                    <button class="btn admin-danger-btn" id="admin-delete-company-btn" style="display:none;" onclick="deleteCompany(currentCompany)">🗑️ 删除公司</button>
                     <button class="btn btn-primary" onclick="goToShareForm()">✍️ 分享你的经历</button>
                 </div>
                 <div class="modules-tabs" id="modules-tabs">
@@ -1943,6 +2189,16 @@
                         <textarea id="share-content" placeholder="请详细描述你的实习经历和感受，越详细越能帮助其他同学哦~" required></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <label>📷 添加图片（选填，最多6张）</label>
+                        <input type="file" id="share-image-input" accept="image/*" multiple style="display:none;" onchange="handleImageFiles(event, 'share')">
+                        <button type="button" class="img-upload-btn" onclick="document.getElementById('share-image-input').click()">
+                            <span>🖼️</span> 选择图片
+                        </button>
+                        <span class="img-upload-tip">图片会自动压缩后上传</span>
+                        <div class="img-preview-grid" id="share-image-preview"></div>
+                    </div>
+
                     <div class="form-actions">
                         <button type="button" class="btn btn-secondary" onclick="goBackToDetail()">取消</button>
                         <button type="submit" class="btn btn-primary">提交分享</button>
@@ -1980,6 +2236,15 @@
                         <label for="message-content">留言内容 <span class="required">*</span></label>
                         <textarea id="message-content" placeholder="有什么想问的或想分享的，都可以写在这里~" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label>📷 添加图片（选填，最多6张）</label>
+                        <input type="file" id="message-image-input" accept="image/*" multiple style="display:none;" onchange="handleImageFiles(event, 'message')">
+                        <button type="button" class="img-upload-btn" onclick="document.getElementById('message-image-input').click()">
+                            <span>🖼️</span> 选择图片
+                        </button>
+                        <span class="img-upload-tip">支持截图、照片，自动压缩</span>
+                        <div class="img-preview-grid" id="message-image-preview"></div>
+                    </div>
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary">提交留言</button>
                     </div>
@@ -1996,12 +2261,13 @@
 
     <script>
         // ========== 模拟数据 ==========
-        const categories = [
-            { id: 'bigtech', name: '大厂', icon: '🏙️', desc: '规模大、体系完善、资源丰富' },
+        let categories = [
+            { id: 'bigtech', name: '大厂/头部企业', icon: '🏙️', desc: '规模大、体系完善、资源丰富' },
+            { id: 'mid', name: '中型企业', icon: '🏢', desc: '业务成熟、平台稳健、机会均衡' },
             { id: 'smallnice', name: '小而美公司', icon: '🌸', desc: '氛围轻松、成长快、扁平化' },
-            { id: 'foreign', name: '外企', icon: '🌍', desc: '工作规范、WLB好、国际化' },
+            { id: 'startup', name: '创业公司', icon: '🚀', desc: '成长快、挑战多、期权激励' },
             { id: 'state', name: '国企', icon: '🏛️', desc: '稳定、福利好、压力小' },
-            { id: 'startup', name: '创业公司', icon: '🚀', desc: '成长快、挑战多、期权激励' }
+            { id: 'foreign', name: '外企', icon: '🌍', desc: '工作规范、WLB好、国际化' }
         ];
 
         let companies = [
@@ -2029,6 +2295,31 @@
                 logo: '🐧',
                 desc: '社交与游戏巨头，微信、QQ母公司',
                 tags: ['薪资高', '福利好', '工作稳定']
+            },
+            // 中型企业
+            {
+                id: 'ctrip',
+                name: '携程旅行',
+                category: 'mid',
+                logo: '✈️',
+                desc: '在线旅游龙头，覆盖机票、酒店、度假业务',
+                tags: ['体系完善', '加班少', '有转正机会']
+            },
+            {
+                id: 'weibo',
+                name: '微博',
+                category: 'mid',
+                logo: '📡',
+                desc: '社交媒体平台，热搜文化发源地',
+                tags: ['成长快', '氛围好', '薪资不错']
+            },
+            {
+                id: 'zhihu',
+                name: '知乎',
+                category: 'mid',
+                logo: '💡',
+                desc: '中文互联网问答社区与原创内容平台',
+                tags: ['氛围好', '成长快', '弹性工作']
             },
             // 小而美
             {
@@ -2145,6 +2436,25 @@
 
         // 分享数据
         let shares = {
+            // 携程旅行
+            ctrip: [
+                { id: 901, module: 'salary', nickname: '小携程', content: '实习日薪180-220，房补每月1000，节假日有购物卡。整体薪资在中型厂里很有竞争力，转正后一年14-16薪，看绩效。', date: '2024-06-12', likes: 21, position: '数据分析实习生', period: '2024.03 - 2024.06' },
+                { id: 902, module: 'hours', nickname: '准点下班党', content: '基本10:00-19:00，午休一小时半。大促和旺季会忙一些，平时很少加班，周末双休。实习生不背线上责任，到点就能走。', date: '2024-06-05', likes: 34, position: '运营实习生', period: '2024.02 - 2024.05' },
+                { id: 903, module: 'content', nickname: '匿名用户', content: '主要做酒店业务的数据报表和竞品分析，mentor每周会一对一带review。公司体系成熟，文档和流程都很规范，适合学习大厂式的工作方法。', date: '2024-05-28', likes: 17, position: '数据分析实习生', period: '2024.03 - 2024.06' },
+                { id: 904, module: 'interview', nickname: '拿到offer的小李', position: '产品运营实习生', interviewRound: '2轮业务面+1轮HR面', interviewDifficulty: '中等', interviewResult: '通过', content: '一面问简历细节和对旅游行业的理解，二面是场景题：如果机票预订量突然下降怎么排查。HR面问能不能实习3个月以上。建议提前了解携程的业务线和最近的大促活动。', date: '2024-06-08', likes: 26 }
+            ],
+            // 微博
+            weibo: [
+                { id: 905, module: 'benefits', nickname: '热搜打工人', content: '免费三餐+下午茶，每月有团建经费。办公地在西二旗，有班车。实习生也能参加公司的公开课和分享会，福利方面不输大厂。', date: '2024-06-10', likes: 19, position: '内容运营实习生', period: '2024.03 - 至今' },
+                { id: 906, module: 'atmosphere', nickname: '冲浪第一线', content: '团队都很年轻，大家天天泡在网上，对热点特别敏感。氛围轻松，可以大胆提想法，好的选题策划真的会被采纳并上线，成就感很强。', date: '2024-06-03', likes: 28, position: '内容运营实习生', period: '2024.03 - 2024.06' },
+                { id: 907, module: 'content', nickname: '匿名用户', content: '日常负责热搜运营和话题策划，监测热点、写推荐语、对接明星和媒体方。节奏快但锻炼人，实习3个月对内容行业理解深了很多。', date: '2024-05-25', likes: 15, position: '策划实习生', period: '2024.02 - 2024.05' }
+            ],
+            // 知乎
+            zhihu: [
+                { id: 908, module: 'salary', nickname: '知一声', content: '实习日薪200-250，晚餐免费，晚上9点后打车报销。弹性工作，不用打卡。薪资在内容平台里算中上，转正听说15薪左右。', date: '2024-06-11', likes: 23, position: '社区运营实习生', period: '2024.03 - 2024.07' },
+                { id: 909, module: 'structure', nickname: '匿名用户', content: '团队按业务线划分，我所在的社区组大概20人，产品、运营、开发配比均衡。实习生直接对接正式员工，没有层层审批，提需求很快能落地。', date: '2024-05-30', likes: 12, position: '产品实习生', period: '2024.02 - 2024.05' },
+                { id: 910, module: 'benefits', nickname: '盐粒', content: '弹性工作制+双休，办公环境很好，有猫！茶水间零食饮料充足。每周都有技术/内容分享会，知乎的知识氛围名不虚传。', date: '2024-06-06', likes: 31, position: '内容编辑实习生', period: '2024.04 - 至今' }
+            ],
             // 字节跳动
             bytedance: [
                 { id: 1, module: 'salary', nickname: '匿名用户', content: '我在字节实习，月薪是220一天，加上房补1500/月，还有免费三餐。算下来一个月大概6k左右，在互联网大厂里算中等偏上吧。转正的话听说能到25k+，看评级。', date: '2024-06-15', likes: 42, position: '前端开发实习生', period: '2024.03 - 2024.06' },
@@ -2289,54 +2599,58 @@
                 nickname: '迷茫的大三狗',
                 content: '请问学长学姐，找实习是大厂重要还是岗位重要呀？我现在有两个offer，一个是大厂的运营岗，一个是小公司的产品岗，不知道怎么选...',
                 date: '2024-06-15',
-                reply: {
-                    content: '建议优先考虑岗位方向哦！如果产品是你想长期发展的方向，小公司的产品岗可能会让你接触更全面的业务。但如果还不确定方向，大厂的牌子和体系会给你更多试错空间。加油！💪',
-                    date: '2024-06-16'
-                }
+                images: [],
+                replies: [
+                    { id: 1, nickname: '管理员', isAdmin: true, content: '建议优先考虑岗位方向哦！如果产品是你想长期发展的方向，小公司的产品岗可能会让你接触更全面的业务。但如果还不确定方向，大厂的牌子和体系会给你更多试错空间。加油！💪', date: '2024-06-16', images: [] },
+                    { id: 2, nickname: '去年也纠结过', isAdmin: false, content: '我最后选了小厂产品，现在回头看确实学到了从0到1的全流程。但如果要读研或者考公，大厂title会更香，看你的长期规划~', date: '2024-06-17', images: [] }
+                ]
             },
             {
                 id: 2,
                 nickname: '求职小白',
                 content: '没有项目经历怎么找实习啊？感觉简历都没东西可写...',
                 date: '2024-06-12',
-                reply: {
-                    content: '别担心！可以从以下几个方面入手：1）课程作业认真做，选一个做得好的包装成项目；2）跟着网上教程做完整的项目练手；3）参加比赛或开源贡献；4）自己的小想法也可以实现出来。关键是要体现你的思考过程和技术能力~',
-                    date: '2024-06-12'
-                }
+                images: [],
+                replies: [
+                    { id: 3, nickname: '管理员', isAdmin: true, content: '别担心！可以从以下几个方面入手：1）课程作业认真做，选一个做得好的包装成项目；2）跟着网上教程做完整的项目练手；3）参加比赛或开源贡献；4）自己的小想法也可以实现出来。关键是要体现你的思考过程和技术能力~', date: '2024-06-12', images: [] }
+                ]
             },
             {
                 id: 3,
                 nickname: '匿名用户',
                 content: '请问实习多久最合适？3个月会不会太短了？',
                 date: '2024-06-10',
-                reply: null
+                images: [],
+                replies: []
             },
             {
                 id: 4,
                 nickname: '努力的小蔡',
                 content: '分享一下我的感悟：找实习真的不要怕被拒！我投了50多份简历，面了十几家才拿到第一个offer。坚持下去，总会有适合你的机会的！',
                 date: '2024-06-08',
-                reply: {
-                    content: '说得太好了！找实习就是一个不断打磨自己的过程，每一次面试都是成长。感谢你的分享，相信能激励很多同学~ 🌟',
-                    date: '2024-06-09'
-                }
+                images: [],
+                replies: [
+                    { id: 4, nickname: '管理员', isAdmin: true, content: '说得太好了！找实习就是一个不断打磨自己的过程，每一次面试都是成长。感谢你的分享，相信能激励很多同学~ 🌟', date: '2024-06-09', images: [] },
+                    { id: 5, nickname: '同路人', isAdmin: false, content: '看到你的留言突然不焦虑了，明天继续投简历！共勉💪', date: '2024-06-09', images: [] }
+                ]
             },
             {
                 id: 5,
                 nickname: '考研还是实习',
                 content: '现在大三下了，一直在纠结是考研还是找实习。家里人希望我考研，但我自己想早点工作积累经验。有没有过来人给点建议？',
                 date: '2024-06-05',
-                reply: null
+                images: [],
+                replies: []
             },
             {
                 id: 6,
                 nickname: '匿名用户',
                 content: '请问这个网站上的信息都是真实的吗？可信度高不高呀？',
                 date: '2024-06-02',
-                reply: {
-                    content: '本站所有内容都是用户真实分享，我们会对内容进行审核，但因为每个人的经历和感受不同，建议大家参考多条信息综合判断哦~ 如果发现不实信息，欢迎举报！',
-                    date: '2024-06-03'
-                }
+                images: [],
+                replies: [
+                    { id: 6, nickname: '管理员', isAdmin: true, content: '本站所有内容都是用户真实分享，我们会对内容进行审核，但因为每个人的经历和感受不同，建议大家参考多条信息综合判断哦~ 如果发现不实信息，欢迎通过免责声明里的邮箱举报！', date: '2024-06-03', images: [] }
+                ]
             }
         ];
 
@@ -2353,6 +2667,78 @@
         const ADMIN_PASSWORD = 'admin123'; // 管理员密码，可自行修改
         const ADMIN_STORAGE_KEY = 'intern_guide_admin_access'; // localStorage 键名
         let messageIdCounter = 100; // 留言ID计数器
+        let replyIdCounter = 0; // 留言回复ID计数器
+        // 待上传图片缓存（压缩后的 base64）
+        let shareImages = [];   // 分享表单
+        let messageImages = []; // 留言表单
+        let replyImages = {};   // 留言回复表单，key 为留言ID
+
+        // ========== 内置数据快照（用于与云端旧数据合并，保证升级后数据不丢失） ==========
+        const DEFAULT_CATEGORIES = JSON.parse(JSON.stringify(categories));
+        const DEFAULT_COMPANIES = JSON.parse(JSON.stringify(companies));
+        const DEFAULT_SHARES = JSON.parse(JSON.stringify(shares));
+
+        // 数据迁移：对云端拉取下来的旧版数据进行结构升级与合并
+        function migrateCloudData() {
+            // 1) 分类：默认分类按新顺序排列并刷新名称/图标/描述；用户自建分类保留追加在后
+            categories = DEFAULT_CATEGORIES.map(dc => {
+                const ex = categories.find(c => c.id === dc.id);
+                return ex ? Object.assign({}, ex, { name: dc.name, icon: dc.icon, desc: dc.desc }) : dc;
+            }).concat(categories.filter(c => !DEFAULT_CATEGORIES.some(d => d.id === c.id)));
+
+            // 2) 公司：补齐内置新公司（如新版新增的中型企业），用户上传的公司全部保留
+            DEFAULT_COMPANIES.forEach(dc => {
+                if (!companies.find(c => c.id === dc.id)) companies.push(dc);
+            });
+
+            // 3) 分享：为新公司补齐内置分享；为所有分享补 images 字段；重算分享ID计数器
+            DEFAULT_COMPANIES.forEach(dc => {
+                if (!shares[dc.id]) shares[dc.id] = JSON.parse(JSON.stringify(DEFAULT_SHARES[dc.id] || []));
+            });
+            let maxShareId = 1000;
+            Object.values(shares).forEach(arr => {
+                if (!Array.isArray(arr)) return;
+                arr.forEach(s => {
+                    if (!s.images) s.images = [];
+                    if (typeof s.id === 'number' && s.id > maxShareId) maxShareId = s.id;
+                });
+            });
+            shareIdCounter = Math.max(shareIdCounter || 0, maxShareId);
+
+            // 4) 留言：旧版 reply（管理员单条回复）升级为 replies 回复楼；补齐 images
+            let maxMessageId = 100;
+            replyIdCounter = 0;
+            messages.forEach(m => {
+                if (!m.images) m.images = [];
+                // 旧数据迁移：reply 对象 → replies 数组
+                if (m.reply && !m.replies) {
+                    m.replies = [{
+                        id: ++replyIdCounter,
+                        nickname: '管理员',
+                        isAdmin: true,
+                        content: m.reply.content || '',
+                        date: m.reply.date || m.date,
+                        images: []
+                    }];
+                    delete m.reply;
+                }
+                if (!Array.isArray(m.replies)) m.replies = [];
+                // 清理旧版遗留的空 reply 字段
+                if ('reply' in m && !m.reply) delete m.reply;
+                m.replies.forEach(r => {
+                    if (!r.images) r.images = [];
+                    if (typeof r.id === 'number' && r.id > replyIdCounter) replyIdCounter = r.id;
+                });
+                if (typeof m.id === 'number' && m.id > maxMessageId) maxMessageId = m.id;
+            });
+            messageIdCounter = Math.max(messageIdCounter || 0, maxMessageId);
+
+            // 5) 重算用户自建公司ID计数器
+            companies.forEach(c => {
+                const match = /^custom-(\d+)$/.exec(c.id);
+                if (match) customCompanyIdCounter = Math.max(customCompanyIdCounter, parseInt(match[1], 10));
+            });
+        }
 
         // ========== 页面切换 ==========
         function showPage(pageId) {
@@ -2396,6 +2782,8 @@
             const company = companies.find(c => c.id === currentCompany);
             document.getElementById('share-company-name').textContent = company ? company.name : '';
             document.getElementById('share-form').reset();
+            shareImages = [];
+            renderImagePreview('share');
             // 重置面试字段隐藏状态
             document.getElementById('interview-fields').style.display = 'none';
             // 填充公司选择
@@ -2412,6 +2800,8 @@
             currentCompany = null;
             document.getElementById('share-company-name').textContent = '新公司';
             document.getElementById('share-form').reset();
+            shareImages = [];
+            renderImagePreview('share');
             document.getElementById('interview-fields').style.display = 'none';
             populateCompanySelect();
             populateNewCompanyCategorySelect();
@@ -2549,11 +2939,91 @@
             const grid = document.getElementById('categories-grid');
             grid.innerHTML = categories.map(cat => `
                 <div class="category-card" onclick="goToList('${cat.id}')">
+                    ${isAdminMode ? `<button class="card-delete-btn" title="删除该类型" onclick="event.stopPropagation(); deleteCategory('${cat.id}')">×</button>` : ''}
                     <div class="category-icon">${cat.icon}</div>
-                    <h3>${cat.name}</h3>
-                    <p>${cat.desc}</p>
+                    <h3>${escapeHtml(cat.name)}</h3>
+                    <p>${escapeHtml(cat.desc)}</p>
                 </div>
-            `).join('');
+            `).join('') + (isAdminMode ? `
+                <div class="add-category-card" onclick="showAddCategoryModal()">
+                    <div class="plus">➕</div>
+                    <h3>添加类型</h3>
+                    <p>新增一个公司类型</p>
+                </div>
+            ` : '');
+        }
+
+        // ========== 分类（公司类型）管理：管理员 ==========
+        function showAddCategoryModal() {
+            const container = document.createElement('div');
+            container.className = 'category-modal-overlay';
+            container.id = 'category-modal-wrapper';
+            container.innerHTML = `
+                <div class="category-modal" onclick="event.stopPropagation()">
+                    <h3>➕ 添加公司类型</h3>
+                    <div class="form-group">
+                        <label>类型名称 <span style="color:#ef4444">*</span></label>
+                        <input type="text" id="new-category-name" placeholder="如：事业单位" maxlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label>图标表情（选填）</label>
+                        <input type="text" id="new-category-icon" placeholder="如：🏫（默认 🏷️）" maxlength="4">
+                    </div>
+                    <div class="form-group">
+                        <label>类型描述</label>
+                        <textarea id="new-category-desc" placeholder="一句话描述该类型的特点" maxlength="40" rows="2"></textarea>
+                    </div>
+                    <div class="category-modal-actions">
+                        <button class="btn btn-secondary" onclick="hideCategoryModal()">取消</button>
+                        <button class="btn btn-primary" onclick="addCategory()">确认添加</button>
+                    </div>
+                </div>
+            `;
+            container.addEventListener('click', e => { if (e.target === container) hideCategoryModal(); });
+            document.body.appendChild(container);
+            setTimeout(() => document.getElementById('new-category-name').focus(), 50);
+        }
+
+        function hideCategoryModal() {
+            const w = document.getElementById('category-modal-wrapper');
+            if (w) w.remove();
+        }
+
+        function addCategory() {
+            const name = document.getElementById('new-category-name').value.trim();
+            const icon = document.getElementById('new-category-icon').value.trim() || '🏷️';
+            const desc = document.getElementById('new-category-desc').value.trim() || '用户自定义类型';
+            if (!name) { showToast('请输入类型名称', 'error'); return; }
+            if (categories.some(c => c.name === name)) { showToast('该类型已存在', 'error'); return; }
+            const id = 'cat-' + Date.now().toString(36);
+            categories.push({ id, name, icon, desc });
+            hideCategoryModal();
+            renderCategories();
+            showToast('类型添加成功');
+            scheduleCloudSave();
+        }
+
+        function deleteCategory(catId) {
+            const cat = categories.find(c => c.id === catId);
+            if (!cat) return;
+            const count = companies.filter(c => c.category === catId).length;
+            if (count > 0) {
+                showToast(`该类型下还有 ${count} 家公司，请先删除或转移这些公司`, 'error');
+                return;
+            }
+            showConfirmModal(
+                '删除类型',
+                `确定要删除类型"${cat.name}"吗？此操作不可撤销。`,
+                () => {
+                    const index = categories.findIndex(c => c.id === catId);
+                    if (index > -1) {
+                        categories.splice(index, 1);
+                        renderCategories();
+                        showToast('类型已删除');
+                        scheduleCloudSave();
+                    }
+                }
+            );
         }
 
         // ========== 渲染标签筛选 ==========
@@ -2612,8 +3082,9 @@
                 const tagColors = ['blue', 'orange', 'purple', 'pink', 'cyan'];
                 grid.innerHTML = filtered.map(company => `
                     <div class="company-card" onclick="goToDetail('${company.id}')">
+                        ${isAdminMode ? `<button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('${company.id}')">×</button>` : ''}
                         <div class="company-logo">${company.logo}</div>
-                        <h3>${company.name}${company.id.startsWith('custom-') ? '<span class="custom-badge">用户贡献</span>' : ''}</h3>
+                        <h3>${company.name}</h3>
                         <p class="company-desc">${company.desc}</p>
                         <div class="company-tags">
                             ${company.tags.map((tag, i) => `<span class="tag ${tagColors[i % tagColors.length]}">${tag}</span>`).join('')}
@@ -2627,9 +3098,13 @@
         function renderCompanyDetail() {
             const company = companies.find(c => c.id === currentCompany);
             if (!company) return;
-            
+
+            // 管理员模式下显示"删除公司"按钮
+            const adminDeleteBtn = document.getElementById('admin-delete-company-btn');
+            if (adminDeleteBtn) adminDeleteBtn.style.display = isAdminMode ? 'inline-block' : 'none';
+
             document.getElementById('detail-logo').textContent = company.logo;
-            document.getElementById('detail-name').innerHTML = company.name + (company.id.startsWith('custom-') ? ' <span class="custom-badge">用户贡献</span>' : '');
+            document.getElementById('detail-name').innerHTML = company.name;
             document.getElementById('detail-desc').textContent = company.desc;
             
             const tagColors = ['blue', 'orange', 'purple', 'pink', 'cyan'];
@@ -2745,7 +3220,7 @@
                                     </div>
                                 ` : ''}
                             </div>
-                            <div class="share-content">${escapeHtml(share.content)}</div>
+                            <div class="share-content">${escapeHtml(share.content)}${renderUploadedImages(share.images)}</div>
                             <div class="share-footer">
                                 <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${currentCompany}', ${share.id})">
                                     <span class="like-icon">${isLiked ? '❤️' : '🤍'}</span>
@@ -2781,7 +3256,7 @@
                                 </div>
                                 <div class="share-date">${share.date}</div>
                             </div>
-                            <div class="share-content">${escapeHtml(share.content)}</div>
+                            <div class="share-content">${escapeHtml(share.content)}${renderUploadedImages(share.images)}</div>
                             <div class="share-footer">
                                 <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${currentCompany}', ${share.id})">
                                     <span class="like-icon">${isLiked ? '❤️' : '🤍'}</span>
@@ -2906,8 +3381,10 @@
                 date: new Date().toISOString().split('T')[0],
                 likes: 0,
                 position,
-                period
+                period,
+                images: shareImages.slice()
             };
+            shareImages = [];
             
             // 添加面试经验特有字段
             if (module === 'interview') {
@@ -3015,8 +3492,9 @@
                 const tagColors = ['blue', 'orange', 'purple', 'pink', 'cyan'];
                 grid.innerHTML = filtered.map(company => `
                     <div class="company-card" onclick="goToDetail('${company.id}')">
+                        ${isAdminMode ? `<button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('${company.id}')">×</button>` : ''}
                         <div class="company-logo">${company.logo}</div>
-                        <h3>${company.name}${company.id.startsWith('custom-') ? '<span class="custom-badge">用户贡献</span>' : ''}</h3>
+                        <h3>${company.name}</h3>
                         <p class="company-desc">${company.desc}</p>
                         <div class="company-tags">
                             ${company.tags.map((tag, i) => `<span class="tag ${tagColors[i % tagColors.length]}">${tag}</span>`).join('')}
@@ -3034,7 +3512,25 @@
                 return new Date(b.date) - new Date(a.date);
             });
             
-            list.innerHTML = sortedMessages.map(msg => `
+            list.innerHTML = sortedMessages.map(msg => {
+                const replyKey = 'reply-' + msg.id;
+                const repliesHtml = (msg.replies && msg.replies.length) ? `
+                    <div class="message-replies">
+                        ${msg.replies.map(r => `
+                            <div class="message-reply-item">
+                                <div class="message-reply-head">
+                                    <span class="reply-name">${escapeHtml(r.nickname)}</span>
+                                    ${r.isAdmin ? '<span class="admin-badge">管理员</span>' : ''}
+                                    <span class="reply-date">${r.date}</span>
+                                    ${isAdminMode ? `<button class="reply-delete-btn" onclick="deleteReply(${msg.id}, ${r.id})">删除</button>` : ''}
+                                </div>
+                                <div class="message-reply-text">${escapeHtml(r.content)}${renderUploadedImages(r.images)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : '';
+
+                return `
                 <div class="message-card">
                     <div class="message-card-header">
                         <div class="message-author">
@@ -3043,34 +3539,34 @@
                         </div>
                         <span class="message-date">${msg.date}</span>
                     </div>
-                    <div class="message-content">${escapeHtml(msg.content)}</div>
-                    ${msg.reply ? `
-                        <div class="message-reply">
-                            <div class="message-reply-label">📢 管理员回复</div>
-                            <div class="message-reply-content">${escapeHtml(msg.reply.content)}</div>
-                            <div class="message-reply-date">${msg.reply.date}</div>
-                        </div>
-                    ` : ''}
-                    ${isAdminMode ? `
-                        ${msg.reply ? `
-                            <button class="reply-btn" onclick="showReplyForm(${msg.id}, true)">
-                                <span>✏️</span> 修改回复
+                    <div class="message-content">${escapeHtml(msg.content)}${renderUploadedImages(msg.images)}</div>
+                    ${repliesHtml}
+                    <div class="message-actions">
+                        <button class="reply-btn" onclick="showReplyForm(${msg.id})">
+                            <span>💬</span> 回复
+                        </button>
+                        ${isAdminMode ? `
+                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(${msg.id})">
+                                <span>🗑️</span> 删除留言
                             </button>
-                        ` : `
-                            <button class="reply-btn" onclick="showReplyForm(${msg.id}, false)">
-                                <span>💬</span> 回复
-                            </button>
-                        `}
-                        <div class="reply-form" id="reply-form-${msg.id}">
-                            <textarea id="reply-text-${msg.id}" placeholder="请输入回复内容...">${msg.reply ? escapeHtml(msg.reply.content) : ''}</textarea>
-                            <div class="reply-form-actions">
-                                <button class="btn-cancel-reply" onclick="hideReplyForm(${msg.id})">取消</button>
-                                <button class="btn-submit-reply" onclick="submitReply(${msg.id})">提交回复</button>
-                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="reply-form" id="reply-form-${msg.id}">
+                        ${isAdminMode ? '' : `<input type="text" id="reply-nick-${msg.id}" placeholder="昵称（选填，默认匿名）" maxlength="20">`}
+                        <textarea id="reply-text-${msg.id}" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
+                        <input type="file" id="reply-image-input-${msg.id}" accept="image/*" multiple style="display:none;" onchange="handleImageFiles(event, '${replyKey}')">
+                        <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-${msg.id}').click()">
+                            <span>🖼️</span> 添加图片
+                        </button>
+                        <div class="img-preview-grid" id="reply-image-preview-${msg.id}"></div>
+                        <div class="reply-form-actions">
+                            <button class="btn-cancel-reply" onclick="hideReplyForm(${msg.id})">取消</button>
+                            <button class="btn-submit-reply" onclick="submitReply(${msg.id})">提交回复</button>
                         </div>
-                    ` : ''}
+                    </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
 
             // 更新管理员模式链接样式
             const adminLink = document.getElementById('admin-toggle-link');
@@ -3095,11 +3591,14 @@
                 nickname: nickname,
                 content: content,
                 date: new Date().toISOString().split('T')[0],
-                reply: null
+                images: messageImages.slice(),
+                replies: []
             };
+            messageImages = [];
             
             messages.push(newMessage);
             document.getElementById('message-form').reset();
+            renderImagePreview('message');
             renderMessages();
             showToast('留言发布成功！');
             scheduleCloudSave();
@@ -3127,6 +3626,9 @@
 
         // 更新管理员模式相关 UI
         function updateAdminUI() {
+            // 控制卡片删除按钮、添加类型卡片等管理员元素的显示
+            document.body.classList.toggle('admin-on', isAdminMode);
+
             const globalToggle = document.getElementById('global-admin-toggle');
             const globalText = document.getElementById('global-admin-text');
             if (globalToggle) {
@@ -3141,6 +3643,10 @@
                 adminLink.textContent = isAdminMode ? '退出管理员模式' : '管理员模式';
                 adminLink.classList.toggle('active', isAdminMode);
             }
+            // 刷新首页分类卡片（添加/删除类型入口）与公司列表（删除入口）
+            renderCategories();
+            renderCompanyList();
+            renderCompanyListForAll();
             // 如果在留言板页面，重新渲染留言
             const messagePage = document.getElementById('message-board-page');
             if (messagePage && messagePage.classList.contains('active')) {
@@ -3196,22 +3702,22 @@
             }
         }
 
-        function showReplyForm(messageId, isEdit) {
+        function showReplyForm(messageId) {
             const form = document.getElementById(`reply-form-${messageId}`);
             if (form) {
                 form.classList.add('show');
                 const textarea = document.getElementById(`reply-text-${messageId}`);
-                if (textarea) {
-                    textarea.focus();
-                }
+                if (textarea) textarea.focus();
+                renderImagePreview('reply-' + messageId);
             }
         }
 
         function hideReplyForm(messageId) {
             const form = document.getElementById(`reply-form-${messageId}`);
-            if (form) {
-                form.classList.remove('show');
-            }
+            if (form) form.classList.remove('show');
+            // 关闭时清空未提交的图片，避免残留
+            replyImages['reply-' + messageId] = [];
+            renderImagePreview('reply-' + messageId);
         }
 
         function submitReply(messageId) {
@@ -3223,15 +3729,61 @@
             }
             
             const message = messages.find(m => m.id === messageId);
-            if (message) {
-                message.reply = {
-                    content: replyContent,
-                    date: new Date().toISOString().split('T')[0]
-                };
-                renderMessages();
-                showToast('回复成功！');
-                scheduleCloudSave();
-            }
+            if (!message) return;
+            if (!Array.isArray(message.replies)) message.replies = [];
+
+            const replyKey = 'reply-' + messageId;
+            const nickInput = document.getElementById(`reply-nick-${messageId}`);
+            const reply = {
+                id: ++replyIdCounter,
+                nickname: isAdminMode ? '管理员' : ((nickInput && nickInput.value.trim()) || '匿名用户'),
+                isAdmin: !!isAdminMode,
+                content: replyContent,
+                date: new Date().toISOString().split('T')[0],
+                images: getImageStore(replyKey).slice()
+            };
+            message.replies.push(reply);
+            replyImages[replyKey] = [];
+
+            renderMessages();
+            showToast(isAdminMode ? '管理员回复成功！' : '回复成功！');
+            scheduleCloudSave();
+        }
+
+        // ========== 删除留言 / 删除回复（管理员） ==========
+        function deleteMessage(messageId) {
+            showConfirmModal(
+                '确认删除',
+                '确定要删除这条留言及其全部回复吗？此操作不可撤销。',
+                () => {
+                    const index = messages.findIndex(m => m.id === messageId);
+                    if (index > -1) {
+                        messages.splice(index, 1);
+                        delete replyImages['reply-' + messageId];
+                        renderMessages();
+                        showToast('留言已删除');
+                        scheduleCloudSave();
+                    }
+                }
+            );
+        }
+
+        function deleteReply(messageId, replyId) {
+            showConfirmModal(
+                '删除回复',
+                '确定要删除这条回复吗？',
+                () => {
+                    const message = messages.find(m => m.id === messageId);
+                    if (!message) return;
+                    const index = message.replies.findIndex(r => r.id === replyId);
+                    if (index > -1) {
+                        message.replies.splice(index, 1);
+                        renderMessages();
+                        showToast('回复已删除');
+                        scheduleCloudSave();
+                    }
+                }
+            );
         }
 
         // ========== Toast 提示 ==========
@@ -3296,6 +3848,38 @@
                             renderModuleContent();
                             showToast('删除成功');
                             scheduleCloudSave();
+                        }
+                    }
+                }
+            );
+        }
+
+        // ========== 删除公司（管理员） ==========
+        function deleteCompany(companyId) {
+            const company = companies.find(c => c.id === companyId);
+            if (!company) return;
+            const shareCount = (shares[companyId] || []).length;
+            showConfirmModal(
+                '删除公司',
+                `确定要删除"${company.name}"吗？其下 ${shareCount} 条实习分享也将一并删除，此操作不可撤销。`,
+                () => {
+                    companies = companies.filter(c => c.id !== companyId);
+                    delete shares[companyId];
+                    scheduleCloudSave();
+                    showToast('公司已删除');
+                    if (currentCompany === companyId) {
+                        // 正在浏览该公司详情：返回其所属类型列表
+                        const cat = company.category;
+                        currentCompany = null;
+                        goToList(cat);
+                    } else {
+                        // 列表页删除：刷新当前列表
+                        renderCategories();
+                        if (currentCategory === 'all') {
+                            renderCompanyListForAll();
+                        } else {
+                            renderTagFilter();
+                            renderCompanyList();
                         }
                     }
                 }
@@ -3383,34 +3967,40 @@
         // ========== 免责声明弹窗 ==========
         function showDisclaimer() {
             const disclaimerContent = `
-                <h3>一、信息性质与来源</h3>
+                <h3>一、隐私服务声明</h3>
+                <p>我们高度重视并将严格保密每一位用户的个人信息。本网页以"最小必要"为原则收集和使用信息，您无需注册或提供真实姓名、学号、手机号、身份证号等任何身份证明信息，即可浏览全部内容并匿名发布留言、回复与实习分享。</p>
+                <p>您主动发布的昵称与内容均由您自行决定，我们不会收集与本网页服务无关的个人信息，也不会将您的信息出售、出租或以任何形式泄露、提供给任何第三方（法律法规另有要求的除外）。</p>
+                <p>您发布的图片仅用于在本网页展示与交流，我们会在上传时进行本地压缩处理，不会用于人脸识别等任何其他用途。若您希望删除自己发布的内容或相关图片，可联系下方邮箱，我们将及时处理。</p>
+                <p>请您注意：公开发布的内容可能被其他访问者看到，建议不要在留言、回复或图片中透露自己或他人的隐私信息。</p>
+
+                <h3>二、信息性质与来源</h3>
                 <p>本网页所聚合的实习资讯均来源于公开渠道，并尽可能标注可溯源的原始出处。本网页仅作信息汇总与索引，不对原始信息的真实性、准确性、完整性、时效性作出任何明示或默示的保证。</p>
                 <p>本网页所展示的低年级实习亲历经验，均已取得当事人授权，仅代表分享者个人观点与主观感受，不构成对任何单位、岗位的普遍性评价或推荐。</p>
                 <p>实习资讯与经验分享均可能因时间推移而发生变化，本网页无义务也无法保证信息的实时更新。</p>
 
-                <h3>二、非官方性与非商业性</h3>
+                <h3>三、非官方性与非商业性</h3>
                 <p>本网页为课程实践作品，非任何企业、机构或学校的官方平台，不代表任何用人单位的立场或意见。</p>
                 <p>本网页不提供任何形式的中介、推荐、内推、收费服务，不参与任何实习招聘环节，与任何用人单位不存在商业合作关系。</p>
                 <p>本网页不向用户收取任何费用，亦不通过任何形式获取商业利益。</p>
 
-                <h3>三、用户使用风险</h3>
+                <h3>四、用户使用风险</h3>
                 <p>用户应自行核实实习信息的真实性与有效性，独立判断并自主决策。因使用或依赖本网页信息而产生的任何直接或间接损失，本网页及制作团队不承担任何责任。</p>
                 <p>用户与任何用人单位之间因实习招聘、实习关系产生的纠纷，均由双方自行解决，与本网页无关。</p>
                 <p>经验分享内容仅供参考，用户应结合自身情况理性判断，不应将其作为决策的唯一依据。</p>
 
-                <h3>四、知识产权</h3>
+                <h3>五、知识产权</h3>
                 <p>本网页所聚合的公开资讯，其知识产权归原作者或原发布方所有，本网页仅作学习研究之引用，并尽可能注明出处。</p>
                 <p>经授权发布的经验分享内容，其知识产权归分享者所有，未经许可不得转载、摘编或用于商业用途。</p>
                 <p>如权利人认为本网页内容侵犯其合法权益，请通过下方联系方式告知，我们将及时核实并处理。</p>
 
-                <h3>五、内容管理与更正</h3>
+                <h3>六、内容管理与更正</h3>
                 <p>本网页对明显失实、侵权或违反法律法规的内容，保留及时删除或更正的权利。</p>
                 <p>信息提供者、分享者及用户如发现内容存在错误或侵权，欢迎通过下方联系方式反馈，我们将尽快核实处理。</p>
 
-                <h3>六、免责声明的变更</h3>
+                <h3>七、免责声明的变更</h3>
                 <p>本网页可能根据实践进展对免责声明进行更新，更新后的声明将在本网页公布。用户继续使用本网页即视为接受更新后的声明。</p>
 
-                <h3>七、联系我们</h3>
+                <h3>八、联系我们</h3>
                 <p>如对本免责声明或网页内容有任何疑问、意见或侵权投诉，请通过以下方式联系：</p>
                 <p><strong>联系邮箱</strong>：2778813219@qq.com</p>
                 <p><strong>联系主体</strong>：课程实践项目团队</p>
@@ -3449,6 +4039,105 @@
             }
         }
 
+        // ========== 图片上传工具（本地压缩 → base64） ==========
+        const IMG_MAX_COUNT = 6;   // 单条内容最多图片数
+        const IMG_MAX_EDGE = 1024; // 压缩后最长边像素
+
+        // 读取并压缩单张图片，返回 data:image/jpeg base64
+        function compressImage(file) {
+            return new Promise((resolve, reject) => {
+                if (!file.type.startsWith('image/')) { reject(new Error('非图片文件')); return; }
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const img = new Image();
+                    img.onload = () => {
+                        let w = img.width, h = img.height;
+                        if (w >= h && w > IMG_MAX_EDGE) { h = Math.round(h * IMG_MAX_EDGE / w); w = IMG_MAX_EDGE; }
+                        else if (h > w && h > IMG_MAX_EDGE) { w = Math.round(w * IMG_MAX_EDGE / h); h = IMG_MAX_EDGE; }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        let dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                        // 仍超过约 220KB 则进一步压缩
+                        if (dataUrl.length > 220 * 1024) dataUrl = canvas.toDataURL('image/jpeg', 0.5);
+                        resolve(dataUrl);
+                    };
+                    img.onerror = () => reject(new Error('图片解析失败'));
+                    img.src = e.target.result;
+                };
+                reader.onerror = () => reject(new Error('图片读取失败'));
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // 根据表单类型取得对应的待上传图片数组
+        function getImageStore(key) {
+            if (key === 'share') return shareImages;
+            if (key === 'message') return messageImages;
+            if (!replyImages[key]) replyImages[key] = [];
+            return replyImages[key];
+        }
+
+        function previewContainerIdFor(key) {
+            if (key === 'share') return 'share-image-preview';
+            if (key === 'message') return 'message-image-preview';
+            return 'reply-image-preview-' + key.replace('reply-', '');
+        }
+
+        // 处理文件选择
+        async function handleImageFiles(event, key) {
+            const files = Array.from(event.target.files || []);
+            event.target.value = ''; // 允许重复选择同一文件
+            const store = getImageStore(key);
+            for (const file of files) {
+                if (store.length >= IMG_MAX_COUNT) {
+                    showToast(`最多只能上传${IMG_MAX_COUNT}张图片`, 'error');
+                    break;
+                }
+                try {
+                    store.push(await compressImage(file));
+                } catch (err) {
+                    showToast('有图片处理失败，请换一张试试', 'error');
+                }
+            }
+            renderImagePreview(key);
+        }
+
+        // 渲染待上传图片缩略图
+        function renderImagePreview(key) {
+            const el = document.getElementById(previewContainerIdFor(key));
+            if (!el) return;
+            const store = getImageStore(key);
+            el.innerHTML = store.map((src, i) => `
+                <div class="img-preview-item">
+                    <img class="uploaded-img" src="${src}" alt="预览图">
+                    <button type="button" class="img-remove" onclick="removePendingImage('${key}', ${i})" title="删除">×</button>
+                </div>
+            `).join('');
+        }
+
+        function removePendingImage(key, index) {
+            getImageStore(key).splice(index, 1);
+            renderImagePreview(key);
+        }
+
+        // 渲染已发布内容中的图片组
+        function renderUploadedImages(images) {
+            if (!images || !images.length) return '';
+            return `<div class="uploaded-images">${images.map(src =>
+                `<img class="uploaded-img" src="${src}" alt="分享图片" loading="lazy" onerror="this.style.display='none'">`
+            ).join('')}</div>`;
+        }
+
+        // 大图查看（事件委托由 init 注册，直接传入图片地址）
+        function showImageLightbox(src) {
+            const overlay = document.createElement('div');
+            overlay.className = 'lightbox-overlay';
+            overlay.innerHTML = `<img src="${src}" alt="大图">`;
+            overlay.addEventListener('click', () => overlay.remove());
+            document.body.appendChild(overlay);
+        }
+
         // ========== 工具函数 ==========
         function escapeHtml(text) {
             const div = document.createElement('div');
@@ -3472,23 +4161,28 @@
 
         function buildCloudState() {
             return {
+                version: 2,
+                categories: categories,
                 companies: companies,
                 shares: shares,
                 messages: messages,
                 shareIdCounter: shareIdCounter,
                 customCompanyIdCounter: customCompanyIdCounter,
-                messageIdCounter: messageIdCounter
+                messageIdCounter: messageIdCounter,
+                replyIdCounter: replyIdCounter
             };
         }
 
         function applyCloudState(state) {
             if (!state) return;
+            if (Array.isArray(state.categories) && state.categories.length) categories = state.categories;
             if (Array.isArray(state.companies) && state.companies.length) companies = state.companies;
             if (state.shares && typeof state.shares === 'object') shares = state.shares;
             if (Array.isArray(state.messages)) messages = state.messages;
             if (typeof state.shareIdCounter === 'number') shareIdCounter = state.shareIdCounter;
             if (typeof state.customCompanyIdCounter === 'number') customCompanyIdCounter = state.customCompanyIdCounter;
             if (typeof state.messageIdCounter === 'number') messageIdCounter = state.messageIdCounter;
+            if (typeof state.replyIdCounter === 'number') replyIdCounter = state.replyIdCounter;
         }
 
         function saveLikedToStorage() {
@@ -3534,6 +4228,10 @@
                 if (rows && rows.length > 0) {
                     // 云端已有数据，覆盖本地内存
                     applyCloudState(rows[0].content);
+                    // 结构升级与新种子合并（不覆盖用户上传的任何内容）
+                    migrateCloudData();
+                    // 将合并升级后的结构回存云端
+                    await doCloudSave();
                 } else {
                     // 首次运行：把内置数据写入云端
                     await doCloudSave();
@@ -3549,6 +4247,15 @@
                 if (currentCompany) renderCompanyDetail();
             } catch (e) {
                 console.warn('云端加载失败，使用内置数据:', e);
+                migrateCloudData();
+                loadLikedFromStorage();
+                renderCategories();
+                renderCompanyList();
+                renderCompanyListForAll();
+                renderTagFilter();
+                renderTagFilterForAll();
+                renderMessages();
+                if (currentCompany) renderCompanyDetail();
             }
         }
 
@@ -3556,6 +4263,12 @@
         function init() {
             renderCategories();
             setupSearch();
+            // 点击任意已上传图片 → 大图查看（事件委托）
+            document.addEventListener('click', function(e) {
+                if (e.target.classList && e.target.classList.contains('uploaded-img')) {
+                    showImageLightbox(e.target.src);
+                }
+            });
             // 检查 localStorage 中的管理员状态
             if (localStorage.getItem(ADMIN_STORAGE_KEY) === 'true') {
                 isAdminMode = true;
