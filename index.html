@@ -3240,14 +3240,14 @@ body.admin-on .add-category-card { display: flex; }
 .trae-success-view { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0px 12px; height: 32px; white-space: nowrap; }
 .trae-success-icon { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; color: var(--trae-status-success); flex-shrink: 0; }
 .trae-success-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--trae-text-default); user-select: none; }</style></head>
-<body class="admin-on">
+<body>
     <!-- Toast 提示 -->
     <div class="toast" id="toast">分享成功！</div>
 
     <!-- 全局管理员开关 -->
-    <div class="global-admin-toggle active" id="global-admin-toggle" onclick="toggleAdminMode()">
+    <div class="global-admin-toggle" id="global-admin-toggle" onclick="toggleAdminMode()">
         <span>🔧</span>
-        <span id="global-admin-text">退出管理员</span>
+        <span id="global-admin-text">管理员模式</span>
     </div>
 
     <!-- 确认弹窗容器 -->
@@ -3286,51 +3286,45 @@ body.admin-on .add-category-card { display: flex; }
                 </div>
                 <div class="categories-grid" id="categories-grid">
                 <div class="category-card" onclick="goToList('bigtech')">
-                    <button class="card-delete-btn" title="删除该类型" onclick="event.stopPropagation(); deleteCategory('bigtech')">×</button>
+                    
                     <div class="category-icon">🏙️</div>
                     <h3>大厂/头部企业</h3>
                     <p>规模大、体系完善、资源丰富</p>
                 </div>
             
                 <div class="category-card" onclick="goToList('mid')">
-                    <button class="card-delete-btn" title="删除该类型" onclick="event.stopPropagation(); deleteCategory('mid')">×</button>
+                    
                     <div class="category-icon">🏢</div>
                     <h3>中型企业</h3>
                     <p>业务成熟、平台稳健、机会均衡</p>
                 </div>
             
                 <div class="category-card" onclick="goToList('smallnice')">
-                    <button class="card-delete-btn" title="删除该类型" onclick="event.stopPropagation(); deleteCategory('smallnice')">×</button>
+                    
                     <div class="category-icon">🌸</div>
                     <h3>小而美公司</h3>
                     <p>氛围轻松、成长快、扁平化</p>
                 </div>
             
                 <div class="category-card" onclick="goToList('startup')">
-                    <button class="card-delete-btn" title="删除该类型" onclick="event.stopPropagation(); deleteCategory('startup')">×</button>
+                    
                     <div class="category-icon">🚀</div>
                     <h3>创业公司</h3>
                     <p>成长快、挑战多、期权激励</p>
                 </div>
             
                 <div class="category-card" onclick="goToList('state')">
-                    <button class="card-delete-btn" title="删除该类型" onclick="event.stopPropagation(); deleteCategory('state')">×</button>
+                    
                     <div class="category-icon">🏛️</div>
                     <h3>国企</h3>
                     <p>稳定、福利好、压力小</p>
                 </div>
             
                 <div class="category-card" onclick="goToList('foreign')">
-                    <button class="card-delete-btn" title="删除该类型" onclick="event.stopPropagation(); deleteCategory('foreign')">×</button>
+                    
                     <div class="category-icon">🌍</div>
                     <h3>外企</h3>
                     <p>工作规范、WLB好、国际化</p>
-                </div>
-            
-                <div class="add-category-card" onclick="showAddCategoryModal()">
-                    <div class="plus">➕</div>
-                    <h3>添加类型</h3>
-                    <p>新增一个公司类型</p>
                 </div>
             </div>
             </div>
@@ -3417,7 +3411,7 @@ body.admin-on .add-category-card { display: flex; }
             </div>
                 <div class="companies-grid" id="companies-grid">
                     <div class="company-card" onclick="goToDetail('bytedance')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('bytedance')">×</button>
+                        
                         <div class="company-logo">🎵</div>
                         <h3>字节跳动</h3>
                         <p class="company-desc">互联网科技巨头，旗下有抖音、TikTok等产品</p>
@@ -3427,7 +3421,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('alibaba')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('alibaba')">×</button>
+                        
                         <div class="company-logo">🛒</div>
                         <h3>阿里巴巴</h3>
                         <p class="company-desc">电商巨头，业务覆盖电商、云计算等</p>
@@ -3437,7 +3431,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('tencent')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('tencent')">×</button>
+                        
                         <div class="company-logo">🐧</div>
                         <h3>腾讯</h3>
                         <p class="company-desc">社交与游戏巨头，微信、QQ母公司</p>
@@ -3447,7 +3441,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('notion')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('notion')">×</button>
+                        
                         <div class="company-logo">📝</div>
                         <h3>Notion 中国</h3>
                         <p class="company-desc">知名效率工具公司，产品驱动</p>
@@ -3457,7 +3451,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('figma')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('figma')">×</button>
+                        
                         <div class="company-logo">🎨</div>
                         <h3>Figma 中国</h3>
                         <p class="company-desc">设计协作工具领导者</p>
@@ -3467,7 +3461,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('linear')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('linear')">×</button>
+                        
                         <div class="company-logo">📊</div>
                         <h3>Linear 中国</h3>
                         <p class="company-desc">项目管理工具新锐</p>
@@ -3477,7 +3471,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('google')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('google')">×</button>
+                        
                         <div class="company-logo">🔍</div>
                         <h3>谷歌中国</h3>
                         <p class="company-desc">全球科技巨头，搜索与AI领导者</p>
@@ -3487,7 +3481,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('microsoft')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('microsoft')">×</button>
+                        
                         <div class="company-logo">🪟</div>
                         <h3>微软中国</h3>
                         <p class="company-desc">全球软件巨头，Azure、Office</p>
@@ -3497,7 +3491,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('amazon')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('amazon')">×</button>
+                        
                         <div class="company-logo">📦</div>
                         <h3>亚马逊中国</h3>
                         <p class="company-desc">全球电商与云计算巨头</p>
@@ -3507,7 +3501,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('cmcc')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('cmcc')">×</button>
+                        
                         <div class="company-logo">📱</div>
                         <h3>中国移动</h3>
                         <p class="company-desc">国内最大电信运营商</p>
@@ -3517,7 +3511,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('bank-of-china')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('bank-of-china')">×</button>
+                        
                         <div class="company-logo">🏦</div>
                         <h3>中国银行</h3>
                         <p class="company-desc">国有大型商业银行</p>
@@ -3527,7 +3521,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('sinopec')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('sinopec')">×</button>
+                        
                         <div class="company-logo">⛽</div>
                         <h3>中国石化</h3>
                         <p class="company-desc">特大型石油石化企业</p>
@@ -3537,7 +3531,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('yuanqisenlin')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('yuanqisenlin')">×</button>
+                        
                         <div class="company-logo">🥤</div>
                         <h3>元气森林</h3>
                         <p class="company-desc">新兴饮料消费品牌，快速崛起的国货之光</p>
@@ -3547,7 +3541,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('heytea')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('heytea')">×</button>
+                        
                         <div class="company-logo">🧋</div>
                         <h3>喜茶</h3>
                         <p class="company-desc">新茶饮开创者，年轻人喜爱的消费品牌</p>
@@ -3557,7 +3551,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('lixiangauto')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('lixiangauto')">×</button>
+                        
                         <div class="company-logo">🚗</div>
                         <h3>理想汽车</h3>
                         <p class="company-desc">新能源汽车品牌，智能电动车领跑者</p>
@@ -3567,7 +3561,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('ctrip')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('ctrip')">×</button>
+                        
                         <div class="company-logo">✈️</div>
                         <h3>携程旅行</h3>
                         <p class="company-desc">在线旅游龙头，覆盖机票、酒店、度假业务</p>
@@ -3577,7 +3571,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('weibo')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('weibo')">×</button>
+                        
                         <div class="company-logo">📡</div>
                         <h3>微博</h3>
                         <p class="company-desc">社交媒体平台，热搜文化发源地</p>
@@ -3587,7 +3581,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('zhihu')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('zhihu')">×</button>
+                        
                         <div class="company-logo">💡</div>
                         <h3>知乎</h3>
                         <p class="company-desc">中文互联网问答社区与原创内容平台</p>
@@ -3597,7 +3591,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-3')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-3')">×</button>
+                        
                         <div class="company-logo">🏢</div>
                         <h3>凡岛网络科技有限公司（WIS）</h3>
                         <p class="company-desc">日化新消费品牌管理公司</p>
@@ -3607,7 +3601,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-4')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-4')">×</button>
+                        
                         <div class="company-logo">🏢</div>
                         <h3>溪木源</h3>
                         <p class="company-desc">护肤品品牌公司</p>
@@ -3617,7 +3611,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-5')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-5')">×</button>
+                        
                         <div class="company-logo">🏢</div>
                         <h3>影石Insta360</h3>
                         <p class="company-desc">智能硬件公司</p>
@@ -3627,7 +3621,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-7')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-7')">×</button>
+                        
                         <div class="company-logo">🏢</div>
                         <h3>越秀集团</h3>
                         <p class="company-desc">靠谱国企</p>
@@ -3637,7 +3631,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-8')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-8')">×</button>
+                        
                         <div class="company-logo">🏢</div>
                         <h3>Flat Incubator</h3>
                         <p class="company-desc">互联网小而美</p>
@@ -3647,7 +3641,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-9')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-9')">×</button>
+                        
                         <div class="company-logo">🏢</div>
                         <h3>兴趣岛</h3>
                         <p class="company-desc">银发经济</p>
@@ -3657,7 +3651,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-10')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-10')">×</button>
+                        
                         <div class="company-logo">🎛️</div>
                         <h3>至真科技</h3>
                         <p class="company-desc">全球化市场</p>
@@ -3667,7 +3661,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-11')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-11')">×</button>
+                        
                         <div class="company-logo">🏨</div>
                         <h3>汇量岛（广州）文化传媒有限公司</h3>
                         <p class="company-desc">有小狗！</p>
@@ -3677,7 +3671,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-12')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-12')">×</button>
+                        
                         <div class="company-logo">📺</div>
                         <h3>Mobvista汇量科技</h3>
                         <p class="company-desc">做完整的广告和分析工具套件的</p>
@@ -3687,7 +3681,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-13')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-13')">×</button>
+                        
                         <div class="company-logo">🛋️</div>
                         <h3>广东甜秘密创新科技</h3>
                         <p class="company-desc">家具/家居</p>
@@ -3697,7 +3691,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-14')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-14')">×</button>
+                        
                         <div class="company-logo">🎟️</div>
                         <h3>广州理堆堆科技有限公司</h3>
                         <p class="company-desc">齐齐整整看好戏</p>
@@ -3707,7 +3701,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-15')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-15')">×</button>
+                        
                         <div class="company-logo">🏢</div>
                         <h3>省广集团 GIMC</h3>
                         
@@ -3717,7 +3711,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-17')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-17')">×</button>
+                        
                         <div class="company-logo">🏢</div>
                         <h3>中国人民保险集团</h3>
                         <p class="company-desc">业务覆盖广，如财产保险、人寿保险、健康保险等</p>
@@ -3727,7 +3721,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('cndgroup')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('cndgroup')">×</button>
+                        
                         <div class="company-logo">🏗️</div>
                         <h3>建发集团</h3>
                         <p class="company-desc">大型国有投资集团</p>
@@ -3737,7 +3731,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('gdbri')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('gdbri')">×</button>
+                        
                         <div class="company-logo">🔬</div>
                         <h3>广东省建筑科学研究院集团</h3>
                         <p class="company-desc">省属科研机构</p>
@@ -3747,7 +3741,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('grgbanking')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('grgbanking')">×</button>
+                        
                         <div class="company-logo">🏧</div>
                         <h3>广电运通</h3>
                         <p class="company-desc">国有控股金融科技企业</p>
@@ -3757,7 +3751,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('cnpc-plan')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('cnpc-plan')">×</button>
+                        
                         <div class="company-logo">🛢️</div>
                         <h3>中石油规划院</h3>
                         <p class="company-desc">中石油直属规划研究机构（北京海淀）</p>
@@ -3767,7 +3761,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('boc-soft')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('boc-soft')">×</button>
+                        
                         <div class="company-logo">💻</div>
                         <h3>中国银行软件中心</h3>
                         <p class="company-desc">中国银行直属软件研发中心</p>
@@ -3777,7 +3771,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('gba-innovation')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('gba-innovation')">×</button>
+                        
                         <div class="company-logo">🌉</div>
                         <h3>粤港澳大湾区国创</h3>
                         <p class="company-desc">粤港澳大湾区国家级创新中心</p>
@@ -3787,7 +3781,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('ciic')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('ciic')">×</button>
+                        
                         <div class="company-logo">🤝</div>
                         <h3>中智</h3>
                         <p class="company-desc">中央企业人力资源服务机构</p>
@@ -3797,7 +3791,7 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('citic-subsidiary')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('citic-subsidiary')">×</button>
+                        
                         <div class="company-logo">🏛️</div>
                         <h3>中信</h3>
                         <p class="company-desc">大集团</p>
@@ -3807,22 +3801,12 @@ body.admin-on .add-category-card { display: flex; }
                     </div>
                 
                     <div class="company-card" onclick="goToDetail('custom-2')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('custom-2')">×</button>
+                        
                         <div class="company-logo">🎵</div>
                         <h3>时代峰峻</h3>
                         
                         <div class="company-tags">
                             <span class="tag blue">薪资高</span><span class="tag orange">成长快</span><span class="tag purple">有转正机会</span>
-                        </div>
-                    </div>
-                
-                    <div class="company-card" onclick="goToDetail('bank-of-china-branch')">
-                        <button class="card-delete-btn" title="删除公司" onclick="event.stopPropagation(); deleteCompany('bank-of-china-branch')">×</button>
-                        <div class="company-logo">🏢</div>
-                        <h3>中国银行（分行办公室岗）</h3>
-                        <p class="company-desc">中国银行分行办公室岗位</p>
-                        <div class="company-tags">
-                            <span class="tag blue">稳定</span><span class="tag orange">压力小</span><span class="tag purple">加班少</span>
                         </div>
                     </div>
                 </div>
@@ -4019,13 +4003,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(1792502510119534)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-1792502510119534">
-                        
+                        <input type="text" id="reply-nick-1792502510119534" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-1792502510119534" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-1792502510119534" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-1792502510119534')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-1792502510119534').click()">
@@ -4056,7 +4036,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">持续幸福中</span>
                                     
                                     <span class="reply-date">2026-10-19</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(113, 12)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">肉麻肉麻麻<div class="uploaded-images"><img class="uploaded-img" src="data:image/jpeg;base64,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" alt="分享图片" loading="lazy" onerror="this.style.display='none'"></div></div>
                             </div>
@@ -4068,13 +4048,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(113)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-113">
-                        
+                        <input type="text" id="reply-nick-113" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-113" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-113" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-113')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-113').click()">
@@ -4105,7 +4081,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">噜噜大王</span>
                                     
                                     <span class="reply-date">2026-10-19</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(106, 8)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">欧坤老公<div class="uploaded-images"><img class="uploaded-img" src="data:image/jpeg;base64,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" alt="分享图片" loading="lazy" onerror="this.style.display='none'"></div></div>
                             </div>
@@ -4117,13 +4093,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(106)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-106">
-                        
+                        <input type="text" id="reply-nick-106" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-106" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-106" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-106')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-106').click()">
@@ -4152,13 +4124,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(101)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-101">
-                        
+                        <input type="text" id="reply-nick-101" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-101" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-101" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-101')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-101').click()">
@@ -4189,7 +4157,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">管理员</span>
                                     <span class="admin-badge">管理员</span>
                                     <span class="reply-date">2026-10-19</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(102, 11)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">271199</div>
                             </div>
@@ -4199,7 +4167,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">匿名用户</span>
                                     
                                     <span class="reply-date">2026-10-19</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(102, 10)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">271199</div>
                             </div>
@@ -4209,7 +4177,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">管理员</span>
                                     <span class="admin-badge">管理员</span>
                                     <span class="reply-date">2026-10-18</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(102, 5)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">271199</div>
                             </div>
@@ -4221,13 +4189,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(102)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-102">
-                        
+                        <input type="text" id="reply-nick-102" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-102" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-102" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-102')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-102').click()">
@@ -4258,7 +4222,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">管理员</span>
                                     <span class="admin-badge">管理员</span>
                                     <span class="reply-date">2026-10-18</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(104, 6)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">用户持续幸福中收到！</div>
                             </div>
@@ -4270,13 +4234,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(104)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-104">
-                        
+                        <input type="text" id="reply-nick-104" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-104" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-104" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-104')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-104').click()">
@@ -4307,7 +4267,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">管理员</span>
                                     <span class="admin-badge">管理员</span>
                                     <span class="reply-date">2024-06-16</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(1, 1)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">建议优先考虑岗位方向哦！如果产品是你想长期发展的方向，小公司的产品岗可能会让你接触更全面的业务。但如果还不确定方向，大厂的牌子和体系会给你更多试错空间。加油！💪</div>
                             </div>
@@ -4319,13 +4279,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(1)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-1">
-                        
+                        <input type="text" id="reply-nick-1" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-1" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-1" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-1')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-1').click()">
@@ -4356,7 +4312,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">管理员</span>
                                     <span class="admin-badge">管理员</span>
                                     <span class="reply-date">2024-06-12</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(2, 2)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">别担心！可以从以下几个方面入手：1）课程作业认真做，选一个做得好的包装成项目；2）跟着网上教程做完整的项目练手；3）参加比赛或开源贡献；4）自己的小想法也可以实现出来。关键是要体现你的思考过程和技术能力~</div>
                             </div>
@@ -4368,13 +4324,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(2)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-2">
-                        
+                        <input type="text" id="reply-nick-2" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-2" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-2" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-2')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-2').click()">
@@ -4403,13 +4355,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(3)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-3">
-                        
+                        <input type="text" id="reply-nick-3" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-3" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-3" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-3')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-3').click()">
@@ -4440,7 +4388,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">管理员</span>
                                     <span class="admin-badge">管理员</span>
                                     <span class="reply-date">2024-06-09</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(4, 3)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">说得太好了！找实习就是一个不断打磨自己的过程，每一次面试都是成长。感谢你的分享，相信能激励很多同学~ 🌟</div>
                             </div>
@@ -4452,13 +4400,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(4)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-4">
-                        
+                        <input type="text" id="reply-nick-4" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-4" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-4" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-4')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-4').click()">
@@ -4487,13 +4431,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(5)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-5">
-                        
+                        <input type="text" id="reply-nick-5" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-5" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-5" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-5')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-5').click()">
@@ -4524,7 +4464,7 @@ body.admin-on .add-category-card { display: flex; }
                                     <span class="reply-name">管理员</span>
                                     <span class="admin-badge">管理员</span>
                                     <span class="reply-date">2024-06-03</span>
-                                    <button class="reply-delete-btn" onclick="deleteReply(6, 4)">删除</button>
+                                    
                                 </div>
                                 <div class="message-reply-text">本站所有内容都是用户真实分享，我们会对内容进行审核，但因为每个人的经历和感受不同，建议大家参考多条信息综合判断哦~ 如果发现不实信息，欢迎举报！</div>
                             </div>
@@ -4536,13 +4476,9 @@ body.admin-on .add-category-card { display: flex; }
                             <span>💬</span> 回复
                         </button>
                         
-                            <button class="reply-btn" style="color:#dc2626;" onclick="deleteMessage(6)">
-                                <span>🗑️</span> 删除留言
-                            </button>
-                        
                     </div>
                     <div class="reply-form" id="reply-form-6">
-                        
+                        <input type="text" id="reply-nick-6" placeholder="昵称（选填，默认匿名）" maxlength="20">
                         <textarea id="reply-text-6" placeholder="写下你的回复，和同学们一起交流吧~"></textarea>
                         <input type="file" id="reply-image-input-6" accept="image/*" multiple="" style="display:none;" onchange="handleImageFiles(event, 'reply-6')">
                         <button type="button" class="img-upload-btn" style="margin-top:8px;" onclick="document.getElementById('reply-image-input-6').click()">
@@ -4557,7 +4493,7 @@ body.admin-on .add-category-card { display: flex; }
                 </div>
                 </div>
             <div class="admin-toggle">
-                <span class="admin-toggle-link active" id="admin-toggle-link" onclick="toggleAdminMode()">退出管理员模式</span>
+                <span class="admin-toggle-link" id="admin-toggle-link" onclick="toggleAdminMode()">管理员模式</span>
             </div>
         </div>
     </div>
@@ -6276,6 +6212,7 @@ body.admin-on .add-category-card { display: flex; }
                 };
                 
                 companies.push(newCompany);
+                newlyCreatedCompanyIds.add(targetCompanyId);
                 shares[targetCompanyId] = [];
                 currentCompany = targetCompanyId;
             }
@@ -6565,15 +6502,8 @@ body.admin-on .add-category-card { display: flex; }
                 updateAdminUI();
                 showToast('已退出管理员模式');
             } else {
-                // 进入管理员模式，先检查 localStorage
-                if (localStorage.getItem(ADMIN_STORAGE_KEY) === 'true') {
-                    isAdminMode = true;
-                    updateAdminUI();
-                    showToast('已进入管理员模式');
-                } else {
-                    // 弹出密码验证
-                    showAdminPasswordModal();
-                }
+                // 每次进入管理员模式都需要输入密码
+                showAdminPasswordModal();
             }
         }
 
@@ -7265,6 +7195,7 @@ body.admin-on .add-category-card { display: flex; }
         const newlyCreatedShareIds = new Set();
         const newlyCreatedMessageIds = new Set();
         const newlyCreatedReplyIds = new Set();
+        const newlyCreatedCompanyIds = new Set();
         let saveRetryCount = 0;
         const MAX_SAVE_RETRIES = 3;
 
@@ -7308,13 +7239,26 @@ body.admin-on .add-category-card { display: flex; }
                         );
                     });
                 }
-                // 合并公司：云端有但本地没有的追加（跳过重名和已删除的）
+                // 合并公司：云端有但本地没有的追加；云端没有但本地有的删除（排除本会话新增的）
                 if (Array.isArray(cloudContent.companies)) {
                     const localCompanyIds = new Set(companies.map(c => c.id));
                     const localNames = new Set(companies.map(c => c.name));
+                    const cloudCompanyIds = new Set(cloudContent.companies.map(c => c.id));
+                    const cloudCompanyNames = new Set(cloudContent.companies.map(c => c.name));
+                    // 追加云端新公司
                     cloudContent.companies.forEach(c => {
-                        if (deletedCompanyIds.has(c.id)) return; // 跳过本会话已删除的公司
+                        if (deletedCompanyIds.has(c.id)) return;
                         if (!localCompanyIds.has(c.id) && !localNames.has(c.name)) companies.push(c);
+                    });
+                    // 删除云端已不存在的本地公司（排除本会话新增的）
+                    companies = companies.filter(c => {
+                        if (deletedCompanyIds.has(c.id)) return false;
+                        if (newlyCreatedCompanyIds.has(c.id)) return true; // 刚创建的还没保存，保留
+                        return cloudCompanyIds.has(c.id) || cloudCompanyNames.has(c.name);
+                    });
+                    // 同步删除被移除公司的分享
+                    Object.keys(shares).forEach(cid => {
+                        if (!companies.some(c => c.id === cid)) delete shares[cid];
                     });
                 }
                 return true;
@@ -7416,6 +7360,8 @@ body.admin-on .add-category-card { display: flex; }
                 newlyCreatedShareIds.clear();
                 newlyCreatedMessageIds.clear();
                 newlyCreatedReplyIds.clear();
+                newlyCreatedCompanyIds.clear();
+                saveLocalBackup(); // 更新本地备份，防止恢复已删除内容
 
                 // 5) 保存后验证：立即拉取云端，检查本地新内容是否真的保存成功
                 saveRetryCount = 0;
@@ -7530,11 +7476,9 @@ body.admin-on .add-category-card { display: flex; }
                     showImageLightbox(e.target.src);
                 }
             });
-            // 检查 localStorage 中的管理员状态
-            if (localStorage.getItem(ADMIN_STORAGE_KEY) === 'true') {
-                isAdminMode = true;
-                updateAdminUI();
-            }
+            // 管理员模式不在页面加载时自动恢复，保持按钮显示"管理员模式"
+            // 点击时若 localStorage 有记录则直接进入，否则需输入密码
+            updateAdminUI();
             // 窗口关闭前：立即保存本地备份，并尝试同步保存到云端
             window.addEventListener('beforeunload', function() {
                 saveLocalBackup(); // 同步写入 localStorage，确保数据不丢
