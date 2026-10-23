@@ -4574,6 +4574,7 @@ body.admin-on .add-category-card { display: flex; }
             currentCategory = null;
             currentCompany = null;
             document.getElementById('home-search').value = '';
+            recordVisit();
         }
 
         function goToList(categoryId) {
@@ -5955,6 +5956,13 @@ body.admin-on .add-category-card { display: flex; }
             const pages = v.pages || {};
             const pageLabels = { home: '首页', list: '公司列表', detail: '公司详情', message: '留言板', other: '其他' };
 
+            // 内容贡献统计：发布实习经历/留言的条数（昵称可能重复，不去重）
+            let shareCount = 0;
+            Object.values(shares || {}).forEach(arr => {
+                if (Array.isArray(arr)) shareCount += arr.length;
+            });
+            let messageCount = (messages || []).length;
+
             let html = `
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
                     <div style="background:#f0f7ff; border-radius:10px; padding:14px; text-align:center;">
@@ -5985,6 +5993,22 @@ body.admin-on .add-category-card { display: flex; }
                                 <div style="font-size:10px; color:#666;">${d.pv}</div>
                             </div>
                         `).join('')}
+                    </div>
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    <div style="font-weight:bold; margin-bottom:8px;">✍️ 内容贡献统计</div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                        <div style="background:#e6f7ff; border-radius:10px; padding:14px; text-align:center;">
+                            <div style="font-size:12px; color:#666;">实习经历发布数</div>
+                            <div style="font-size:24px; font-weight:bold; color:#13c2c2;">${shareCount}</div>
+                            <div style="font-size:11px; color:#999; margin-top:4px;">条分享</div>
+                        </div>
+                        <div style="background:#f9f0ff; border-radius:10px; padding:14px; text-align:center;">
+                            <div style="font-size:12px; color:#666;">留言发布数</div>
+                            <div style="font-size:24px; font-weight:bold; color:#722ed1;">${messageCount}</div>
+                            <div style="font-size:11px; color:#999; margin-top:4px;">条留言</div>
+                        </div>
                     </div>
                 </div>
 
