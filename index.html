@@ -3249,6 +3249,24 @@ body.admin-on .add-category-card { display: flex; }
         <span>🔧</span>
         <span id="global-admin-text">管理员模式</span>
     </div>
+    <!-- 流量统计按钮（仅管理员可见） -->
+    <div class="global-admin-toggle" id="global-stats-toggle" style="display:none; right:160px;" onclick="openStatsModal()">
+        <span>📊</span>
+        <span>流量统计</span>
+    </div>
+
+    <!-- 流量统计弹窗 -->
+    <div class="admin-password-overlay" id="stats-overlay" onclick="if(event.target === this) closeStatsModal()">
+        <div class="admin-password-modal" style="max-width:560px;">
+            <h3>📊 网站流量统计</h3>
+            <div id="stats-content" style="text-align:left; max-height:60vh; overflow-y:auto;">
+                <p style="color:#888;">加载中...</p>
+            </div>
+            <div class="admin-password-actions">
+                <button class="btn btn-secondary" onclick="closeStatsModal()">关闭</button>
+            </div>
+        </div>
+    </div>
 
     <!-- 确认弹窗容器 -->
     <div id="confirm-modal-container"></div>
@@ -4387,7 +4405,7 @@ body.admin-on .add-category-card { display: flex; }
         let customCompanyIdCounter = 0; // 自定义公司ID计数器
         let isNewCompanyMode = false; // 是否处于添加新公司模式
         let isAdminMode = false; // 管理员模式
-        const ADMIN_PASSWORD = 'admin123'; // 管理员密码，可自行修改
+        const ADMIN_PASSWORD = 'gzfsxwz878'; // 管理员密码，可自行修改
         const ADMIN_STORAGE_KEY = 'intern_guide_admin_access'; // localStorage 键名
         let messageIdCounter = 100; // 留言ID计数器
         let replyIdCounter = 0; // 留言回复ID计数器
@@ -4567,11 +4585,13 @@ body.admin-on .add-category-card { display: flex; }
             renderTagFilter();
             renderCompanyList();
             showPage('list-page');
+            recordVisit();
         }
 
         function goBackToList() {
             showPage('list-page');
             currentCompany = null;
+            recordVisit();
         }
 
         function goToDetail(companyId) {
@@ -4579,6 +4599,7 @@ body.admin-on .add-category-card { display: flex; }
             currentModule = 'salary';
             renderCompanyDetail();
             showPage('detail-page');
+            recordVisit();
         }
 
         function goToShareForm() {
@@ -4629,6 +4650,7 @@ body.admin-on .add-category-card { display: flex; }
         function goToMessageBoard() {
             renderMessages();
             showPage('message-board-page');
+            recordVisit();
         }
 
         function goHomeFromMessageBoard() {
@@ -5848,6 +5870,11 @@ body.admin-on .add-category-card { display: flex; }
             if (globalText) {
                 globalText.textContent = isAdminMode ? '退出管理员' : '管理员模式';
             }
+            // 流量统计按钮仅管理员可见
+            const statsToggle = document.getElementById('global-stats-toggle');
+            if (statsToggle) {
+                statsToggle.style.display = isAdminMode ? 'flex' : 'none';
+            }
             // 更新留言板的管理员链接
             const adminLink = document.getElementById('admin-toggle-link');
             if (adminLink) {
@@ -5886,6 +5913,130 @@ body.admin-on .add-category-card { display: flex; }
         function closeAdminPasswordModal() {
             const overlay = document.getElementById('admin-password-overlay');
             overlay.classList.remove('show');
+        }
+
+        // 打开流量统计弹窗
+        function openStatsModal() {
+            const overlay = document.getElementById('stats-overlay');
+            overlay.classList.add('show');
+            renderStats();
+        }
+
+        function closeStatsModal() {
+            const overlay = document.getElementById('stats-overlay');
+            overlay.classList.remove('show');
+        }
+
+        // 渲染流量统计数据
+        function renderStats() {
+            const el = document.getElementById('stats-content');
+            if (!el) return;
+            const v = visits || {};
+            const today = new Date().toISOString().split('T')[0];
+            const todayData = (v.daily && v.daily[today]) || { pv: 0, uv: 0 };
+
+            // 近7天数据
+            const days = [];
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const key = d.toISOString().split('T')[0];
+                const label = (d.getMonth() + 1) + '/' + d.getDate();
+                const data = (v.daily && v.daily[key]) || { pv: 0, uv: 0 };
+                days.push({ key, label, pv: data.pv || 0, uv: data.uv || 0 });
+            }
+            const maxPV = Math.max(...days.map(d => d.pv), 1);
+
+            // 设备分布
+            const devices = v.devices || { desktop: 0, mobile: 0, tablet: 0 };
+            const deviceTotal = (devices.desktop || 0) + (devices.mobile || 0) + (devices.tablet || 0) || 1;
+
+            // 页面分布
+            const pages = v.pages || {};
+            const pageLabels = { home: '首页', list: '公司列表', detail: '公司详情', message: '留言板', other: '其他' };
+
+            let html = `
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+                    <div style="background:#f0f7ff; border-radius:10px; padding:14px; text-align:center;">
+                        <div style="font-size:12px; color:#666;">总访问量 (PV)</div>
+                        <div style="font-size:24px; font-weight:bold; color:#1677ff;">${v.totalPV || 0}</div>
+                    </div>
+                    <div style="background:#f6ffed; border-radius:10px; padding:14px; text-align:center;">
+                        <div style="font-size:12px; color:#666;">独立访客 (UV)</div>
+                        <div style="font-size:24px; font-weight:bold; color:#52c41a;">${v.totalUV || 0}</div>
+                    </div>
+                    <div style="background:#fff7e6; border-radius:10px; padding:14px; text-align:center;">
+                        <div style="font-size:12px; color:#666;">今日 PV</div>
+                        <div style="font-size:24px; font-weight:bold; color:#fa8c16;">${todayData.pv || 0}</div>
+                    </div>
+                    <div style="background:#fff0f6; border-radius:10px; padding:14px; text-align:center;">
+                        <div style="font-size:12px; color:#666;">今日 UV</div>
+                        <div style="font-size:24px; font-weight:bold; color:#eb2f96;">${todayData.uv || 0}</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    <div style="font-weight:bold; margin-bottom:8px;">📈 近7天访问趋势</div>
+                    <div style="display:flex; align-items:flex-end; gap:8px; height:100px; padding:8px 0;">
+                        ${days.map(d => `
+                            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
+                                <div style="width:100%; background:linear-gradient(180deg,#1677ff,#69b1ff); border-radius:4px 4px 0 0; height:${Math.max(2, (d.pv / maxPV) * 80)}px;" title="PV: ${d.pv}"></div>
+                                <div style="font-size:10px; color:#999;">${d.label}</div>
+                                <div style="font-size:10px; color:#666;">${d.pv}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    <div style="font-weight:bold; margin-bottom:8px;">📱 设备分布</div>
+                    <div style="display:flex; gap:12px;">
+                        <div style="flex:1;">
+                            <div style="font-size:12px; color:#666;">🖥️ 桌面端</div>
+                            <div style="background:#f0f0f0; border-radius:4px; height:16px; overflow:hidden; margin-top:4px;">
+                                <div style="background:#1677ff; height:100%; width:${(devices.desktop / deviceTotal * 100).toFixed(0)}%;"></div>
+                            </div>
+                            <div style="font-size:11px; color:#999; margin-top:2px;">${devices.desktop || 0} (${(devices.desktop / deviceTotal * 100).toFixed(0)}%)</div>
+                        </div>
+                        <div style="flex:1;">
+                            <div style="font-size:12px; color:#666;">📱 手机端</div>
+                            <div style="background:#f0f0f0; border-radius:4px; height:16px; overflow:hidden; margin-top:4px;">
+                                <div style="background:#52c41a; height:100%; width:${(devices.mobile / deviceTotal * 100).toFixed(0)}%;"></div>
+                            </div>
+                            <div style="font-size:11px; color:#999; margin-top:2px;">${devices.mobile || 0} (${(devices.mobile / deviceTotal * 100).toFixed(0)}%)</div>
+                        </div>
+                        <div style="flex:1;">
+                            <div style="font-size:12px; color:#666;">📋 平板</div>
+                            <div style="background:#f0f0f0; border-radius:4px; height:16px; overflow:hidden; margin-top:4px;">
+                                <div style="background:#faad14; height:100%; width:${(devices.tablet / deviceTotal * 100).toFixed(0)}%;"></div>
+                            </div>
+                            <div style="font-size:11px; color:#999; margin-top:2px;">${devices.tablet || 0} (${(devices.tablet / deviceTotal * 100).toFixed(0)}%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="font-weight:bold; margin-bottom:8px;">📄 页面访问分布</div>
+                    ${Object.keys(pageLabels).map(p => {
+                        const count = pages[p] || 0;
+                        const pageTotal = Object.values(pages).reduce((a, b) => a + b, 0) || 1;
+                        return `
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                                <span style="width:60px; font-size:12px; color:#666;">${pageLabels[p]}</span>
+                                <div style="flex:1; background:#f0f0f0; border-radius:4px; height:14px; overflow:hidden;">
+                                    <div style="background:#722ed1; height:100%; width:${(count / pageTotal * 100).toFixed(0)}%;"></div>
+                                </div>
+                                <span style="font-size:11px; color:#999; width:50px; text-align:right;">${count}</span>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+
+                <div style="margin-top:16px; padding-top:12px; border-top:1px solid #eee; font-size:11px; color:#aaa; text-align:center;">
+                    数据从部署新版后开始统计 · 每30秒自动同步云端
+                </div>
+            `;
+            el.innerHTML = html;
         }
 
         // 验证管理员密码
@@ -6382,6 +6533,110 @@ body.admin-on .add-category-card { display: flex; }
         let cloudAvailable = false; // 云端是否可用
         let cloudReady = false; // 云端数据是否已加载完成（防止加载期间用户操作被覆盖）
 
+        // ========== 流量统计 ==========
+        let visits = {
+            totalPV: 0,
+            totalUV: 0,
+            daily: {},
+            devices: { desktop: 0, mobile: 0, tablet: 0 },
+            pages: { home: 0, list: 0, detail: 0, message: 0 },
+            allVisitorIds: []
+        };
+        const VISITOR_ID_KEY = 'intern_guide_visitor_id';
+
+        function getOrCreateVisitorId() {
+            try {
+                let vid = localStorage.getItem(VISITOR_ID_KEY);
+                if (!vid) {
+                    vid = 'v_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+                    localStorage.setItem(VISITOR_ID_KEY, vid);
+                }
+                return vid;
+            } catch (e) {
+                return 'v_anon_' + Date.now();
+            }
+        }
+
+        function getDeviceType() {
+            const ua = navigator.userAgent;
+            if (/Mobi|Android|iPhone|iPad/i.test(ua)) {
+                if (/iPad|Tablet/i.test(ua)) return 'tablet';
+                return 'mobile';
+            }
+            return 'desktop';
+        }
+
+        function getCurrentPage() {
+            const activePage = document.querySelector('.page.active');
+            if (!activePage) return 'home';
+            const id = activePage.id;
+            if (id === 'home-page') return 'home';
+            if (id === 'company-list-page' || id === 'all-companies-page') return 'list';
+            if (id === 'detail-page') return 'detail';
+            if (id === 'message-board-page') return 'message';
+            return 'other';
+        }
+
+        function recordVisit() {
+            const visitorId = getOrCreateVisitorId();
+            const today = new Date().toISOString().split('T')[0];
+            const device = getDeviceType();
+            const page = getCurrentPage();
+
+            if (!visits.daily) visits.daily = {};
+            if (!visits.allVisitorIds) visits.allVisitorIds = [];
+            if (!visits.devices) visits.devices = { desktop: 0, mobile: 0, tablet: 0 };
+            if (!visits.pages) visits.pages = { home: 0, list: 0, detail: 0, message: 0 };
+
+            visits.totalPV = (visits.totalPV || 0) + 1;
+            if (!visits.daily[today]) visits.daily[today] = { pv: 0, uv: 0, visitorIds: [] };
+            visits.daily[today].pv += 1;
+
+            if (!visits.allVisitorIds.includes(visitorId)) {
+                visits.allVisitorIds.push(visitorId);
+                visits.totalUV = (visits.totalUV || 0) + 1;
+            }
+            if (!visits.daily[today].visitorIds.includes(visitorId)) {
+                visits.daily[today].visitorIds.push(visitorId);
+                visits.daily[today].uv += 1;
+            }
+
+            visits.devices[device] = (visits.devices[device] || 0) + 1;
+            visits.pages[page] = (visits.pages[page] || 0) + 1;
+
+            scheduleCloudSave();
+        }
+
+        function mergeVisits(local, cloud) {
+            if (!cloud) return local || { totalPV: 0, totalUV: 0, daily: {}, devices: { desktop: 0, mobile: 0, tablet: 0 }, pages: {}, allVisitorIds: [] };
+            if (!local) local = { totalPV: 0, totalUV: 0, daily: {}, devices: { desktop: 0, mobile: 0, tablet: 0 }, pages: {}, allVisitorIds: [] };
+
+            const allIds = Array.from(new Set([...(local.allVisitorIds || []), ...(cloud.allVisitorIds || [])]));
+            const totalUV = allIds.length;
+            const totalPV = Math.max(local.totalPV || 0, cloud.totalPV || 0);
+
+            const daily = {};
+            const allDays = new Set([...Object.keys(local.daily || {}), ...Object.keys(cloud.daily || {})]);
+            allDays.forEach(day => {
+                const l = local.daily?.[day] || { pv: 0, uv: 0, visitorIds: [] };
+                const c = cloud.daily?.[day] || { pv: 0, uv: 0, visitorIds: [] };
+                const dayIds = Array.from(new Set([...(l.visitorIds || []), ...(c.visitorIds || [])]));
+                daily[day] = { pv: Math.max(l.pv || 0, c.pv || 0), uv: dayIds.length, visitorIds: dayIds };
+            });
+
+            const devices = {};
+            ['desktop', 'mobile', 'tablet'].forEach(d => {
+                devices[d] = Math.max(local.devices?.[d] || 0, cloud.devices?.[d] || 0);
+            });
+
+            const pages = {};
+            Object.keys({ ...(local.pages || {}), ...(cloud.pages || {}) }).forEach(p => {
+                pages[p] = Math.max(local.pages?.[p] || 0, cloud.pages?.[p] || 0);
+            });
+
+            return { totalPV, totalUV, daily, devices, pages, allVisitorIds: allIds };
+        }
+
         // 数据未就绪时阻止用户提交/删除，避免内容被后续加载覆盖而丢失
         function ensureCloudReady() {
             if (!cloudReady) {
@@ -6409,7 +6664,8 @@ body.admin-on .add-category-card { display: flex; }
                 shareIdCounter: shareIdCounter,
                 customCompanyIdCounter: customCompanyIdCounter,
                 messageIdCounter: messageIdCounter,
-                replyIdCounter: replyIdCounter
+                replyIdCounter: replyIdCounter,
+                visits: visits
             };
         }
 
@@ -6423,6 +6679,7 @@ body.admin-on .add-category-card { display: flex; }
             if (typeof state.customCompanyIdCounter === 'number') customCompanyIdCounter = state.customCompanyIdCounter;
             if (typeof state.messageIdCounter === 'number') messageIdCounter = state.messageIdCounter;
             if (typeof state.replyIdCounter === 'number') replyIdCounter = state.replyIdCounter;
+            if (state.visits && typeof state.visits === 'object') visits = state.visits;
         }
 
         function saveLikedToStorage() {
@@ -6589,6 +6846,10 @@ body.admin-on .add-category-card { display: flex; }
                         if (!companies.some(c => c.id === cid)) delete shares[cid];
                     });
                 }
+                // 合并访问统计
+                if (cloudContent.visits && typeof cloudContent.visits === 'object') {
+                    visits = mergeVisits(visits, cloudContent.visits);
+                }
                 return true;
             } catch (e) {
                 return false;
@@ -6658,6 +6919,11 @@ body.admin-on .add-category-card { display: flex; }
                     }
                     if (typeof cloudContent.shareIdCounter === 'number') {
                         stateToSave.shareIdCounter = Math.max(stateToSave.shareIdCounter, cloudContent.shareIdCounter);
+                    }
+                    // 合并访问统计
+                    if (cloudContent.visits && typeof cloudContent.visits === 'object') {
+                        stateToSave.visits = mergeVisits(stateToSave.visits, cloudContent.visits);
+                        visits = stateToSave.visits;
                     }
                 }
 
@@ -6777,6 +7043,7 @@ body.admin-on .add-category-card { display: flex; }
                 renderMessages();
                 if (currentCompany) renderCompanyDetail();
                 cloudReady = true; // 数据加载完成，开放用户操作
+                recordVisit(); // 记录本次访问
             } catch (e) {
                 console.warn('云端加载失败，使用内置数据:', e);
                 // 云端不可达时，优先从本地备份恢复（避免用户本地内容丢失）
@@ -6791,6 +7058,7 @@ body.admin-on .add-category-card { display: flex; }
                 renderMessages();
                 if (currentCompany) renderCompanyDetail();
                 cloudReady = true; // 即使加载失败也开放操作，避免页面卡死
+                recordVisit(); // 记录本次访问
             }
         }
 
