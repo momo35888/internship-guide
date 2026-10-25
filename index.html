@@ -5933,8 +5933,6 @@ body.admin-on .add-category-card { display: flex; }
             const el = document.getElementById('stats-content');
             if (!el) return;
             const v = visits || {};
-            const today = new Date().toISOString().split('T')[0];
-            const todayData = (v.daily && v.daily[today]) || { pv: 0, uv: 0 };
 
             // 设备分布
             const devices = v.devices || { desktop: 0, mobile: 0, tablet: 0 };
@@ -5960,14 +5958,6 @@ body.admin-on .add-category-card { display: flex; }
                     <div style="background:#f6ffed; border-radius:10px; padding:14px; text-align:center;">
                         <div style="font-size:12px; color:#666;">独立访客 (UV)</div>
                         <div style="font-size:24px; font-weight:bold; color:#52c41a;">${v.totalUV || 0}</div>
-                    </div>
-                    <div style="background:#fff7e6; border-radius:10px; padding:14px; text-align:center;">
-                        <div style="font-size:12px; color:#666;">今日 PV</div>
-                        <div style="font-size:24px; font-weight:bold; color:#fa8c16;">${todayData.pv || 0}</div>
-                    </div>
-                    <div style="background:#fff0f6; border-radius:10px; padding:14px; text-align:center;">
-                        <div style="font-size:12px; color:#666;">今日 UV</div>
-                        <div style="font-size:24px; font-weight:bold; color:#eb2f96;">${todayData.uv || 0}</div>
                     </div>
                 </div>
 
